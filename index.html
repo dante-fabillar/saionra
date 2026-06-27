@@ -37,6 +37,7 @@
     }
 
     body {
+      position: relative;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
         radial-gradient(circle at 20% 10%, rgba(215, 181, 109, 0.16), transparent 32%),
@@ -45,6 +46,42 @@
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      border-radius: 999px;
+      filter: blur(90px);
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: -2;
+      animation: orbFloat 14s ease-in-out infinite alternate;
+    }
+
+    body::before {
+      top: 8%;
+      left: -120px;
+      background: var(--gold);
+    }
+
+    body::after {
+      right: -140px;
+      bottom: 8%;
+      background: var(--green);
+      animation-delay: 2s;
+    }
+
+    @keyframes orbFloat {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      100% {
+        transform: translate3d(46px, -38px, 0) scale(1.15);
+      }
     }
 
     a {
@@ -93,6 +130,16 @@
       color: #07070a;
       box-shadow: 0 14px 35px rgba(215, 181, 109, 0.25);
       font-weight: 900;
+      animation: logoGlow 3.8s ease-in-out infinite;
+    }
+
+    @keyframes logoGlow {
+      0%, 100% {
+        box-shadow: 0 14px 35px rgba(215, 181, 109, 0.22);
+      }
+      50% {
+        box-shadow: 0 18px 50px rgba(215, 181, 109, 0.38);
+      }
     }
 
     .nav-links {
@@ -118,6 +165,8 @@
     }
 
     .btn {
+      position: relative;
+      overflow: hidden;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -130,12 +179,25 @@
       color: var(--text);
       font-weight: 700;
       font-size: 14px;
-      transition: transform 0.2s ease, border 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.28s ease, border 0.28s ease, background 0.28s ease, box-shadow 0.28s ease;
       cursor: pointer;
     }
 
+    .btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.26), transparent);
+      transform: translateX(-120%);
+      transition: transform 0.6s ease;
+    }
+
+    .btn:hover::before {
+      transform: translateX(120%);
+    }
+
     .btn:hover {
-      transform: translateY(-2px);
+      transform: translateY(-3px);
       border-color: rgba(215, 181, 109, 0.5);
       background: rgba(255, 255, 255, 0.08);
       box-shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
@@ -163,6 +225,21 @@
       align-items: center;
     }
 
+    .hero-content {
+      animation: heroTextIn 0.95s ease both;
+    }
+
+    @keyframes heroTextIn {
+      from {
+        opacity: 0;
+        transform: translateY(26px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -183,6 +260,16 @@
       border-radius: 50%;
       background: var(--green);
       box-shadow: 0 0 0 8px rgba(126, 226, 168, 0.1);
+      animation: pulseDot 1.9s ease-in-out infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% {
+        box-shadow: 0 0 0 6px rgba(126, 226, 168, 0.10);
+      }
+      50% {
+        box-shadow: 0 0 0 12px rgba(126, 226, 168, 0.02);
+      }
     }
 
     h1 {
@@ -194,6 +281,10 @@
 
     .hero h1 span {
       color: var(--gold);
+      background: linear-gradient(135deg, #ffe5a8, var(--gold-dark));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .hero-copy {
@@ -246,6 +337,17 @@
       box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
+      animation: dashboardFloat 6.5s ease-in-out infinite;
+      transform-style: preserve-3d;
+    }
+
+    @keyframes dashboardFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
     }
 
     .mockup::before {
@@ -254,6 +356,33 @@
       inset: -2px;
       background: radial-gradient(circle at 70% 10%, rgba(215, 181, 109, 0.22), transparent 35%);
       pointer-events: none;
+    }
+
+    .mockup::after {
+      content: "";
+      position: absolute;
+      top: -40%;
+      left: -60%;
+      width: 80%;
+      height: 180%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+      transform: rotate(20deg);
+      animation: glassSweep 7s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes glassSweep {
+      0%, 45% {
+        transform: translateX(-40%) rotate(20deg);
+        opacity: 0;
+      }
+      55% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(260%) rotate(20deg);
+        opacity: 0;
+      }
     }
 
     .app-window {
@@ -382,6 +511,16 @@
       height: 100%;
       width: 76%;
       background: linear-gradient(90deg, var(--gold-light), var(--green));
+      animation: progressGlow 2.8s ease-in-out infinite;
+    }
+
+    @keyframes progressGlow {
+      0%, 100% {
+        filter: brightness(1);
+      }
+      50% {
+        filter: brightness(1.35);
+      }
     }
 
     .task-list {
@@ -459,11 +598,41 @@
     }
 
     .feature-card, .price-card, .case-card {
+      position: relative;
+      overflow: hidden;
       border: 1px solid var(--line);
       background: var(--card);
       border-radius: var(--radius);
       padding: 24px;
       box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+    }
+
+    .feature-card::before,
+    .price-card::before,
+    .case-card::before,
+    .trust-card::before,
+    .step::before,
+    .mini-card::before,
+    .task::before,
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(215, 181, 109, 0.14), transparent 38%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .feature-card:hover::before,
+    .price-card:hover::before,
+    .case-card:hover::before,
+    .trust-card:hover::before,
+    .step:hover::before,
+    .mini-card:hover::before,
+    .task:hover::before,
+    .panel:hover::before {
+      opacity: 1;
     }
 
     .icon {
@@ -500,6 +669,8 @@
     }
 
     .panel {
+      position: relative;
+      overflow: hidden;
       border: 1px solid var(--line);
       background: rgba(255, 255, 255, 0.05);
       border-radius: 32px;
@@ -513,6 +684,8 @@
     }
 
     .step {
+      position: relative;
+      overflow: hidden;
       display: grid;
       grid-template-columns: 42px 1fr;
       gap: 14px;
@@ -644,6 +817,7 @@
       padding: 14px 15px;
       outline: none;
       font: inherit;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, transform 0.25s ease;
     }
 
     select {
@@ -678,6 +852,8 @@
     textarea:focus {
       border-color: rgba(215, 181, 109, 0.55);
       box-shadow: 0 0 0 4px rgba(215, 181, 109, 0.08);
+      background: rgba(0, 0, 0, 0.32);
+      transform: translateY(-1px);
     }
 
     .note {
@@ -727,10 +903,11 @@
     .panel,
     .mockup {
       transition:
-        transform 0.28s ease,
-        border-color 0.28s ease,
-        background 0.28s ease,
-        box-shadow 0.28s ease;
+        transform 0.38s cubic-bezier(.2,.8,.2,1),
+        border-color 0.38s ease,
+        background 0.38s ease,
+        box-shadow 0.38s ease;
+      will-change: transform;
     }
 
     .feature-card:hover,
@@ -740,7 +917,7 @@
     .step:hover,
     .mini-card:hover,
     .task:hover {
-      transform: translateY(-6px);
+      transform: translateY(-8px) scale(1.015);
       border-color: rgba(215, 181, 109, 0.38);
       box-shadow: 0 24px 70px rgba(0, 0, 0, 0.30);
     }
@@ -753,45 +930,57 @@
 
     .mockup:hover,
     .panel:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
       border-color: rgba(215, 181, 109, 0.32);
     }
 
     .price-card.featured:hover {
-      transform: translateY(-14px);
+      transform: translateY(-16px) scale(1.015);
     }
 
     .reveal {
       opacity: 0;
-      transform: translateY(28px);
+      transform: translateY(36px) scale(0.985);
+      filter: blur(6px);
       transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
+        opacity 0.95s cubic-bezier(.2,.8,.2,1),
+        transform 0.95s cubic-bezier(.2,.8,.2,1),
+        filter 0.95s ease;
       transition-delay: var(--delay, 0s);
     }
 
     .reveal.is-visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+
+    .slide-left {
+      transform: translateX(-34px) scale(0.985);
+    }
+
+    .slide-right {
+      transform: translateX(34px) scale(0.985);
+    }
+
+    .slide-left.is-visible,
+    .slide-right.is-visible {
+      transform: translateX(0) scale(1);
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .reveal,
-      .feature-card,
-      .price-card,
-      .case-card,
-      .trust-card,
-      .step,
-      .mini-card,
-      .task,
-      .panel,
-      .mockup {
-        transition: none;
-        transform: none;
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
       }
 
       .reveal {
         opacity: 1;
+        transform: none;
+        filter: none;
       }
     }
 
@@ -841,6 +1030,7 @@
       .mockup {
         padding: 10px;
         border-radius: 24px;
+        animation: none;
       }
 
       .app-window {
@@ -858,6 +1048,12 @@
       .price-card.featured,
       .price-card.featured:hover {
         transform: none;
+      }
+
+      body::before,
+      body::after {
+        width: 260px;
+        height: 260px;
       }
     }
   </style>
@@ -889,7 +1085,7 @@
   <main id="top">
     <section class="hero">
       <div class="container hero-grid">
-        <div>
+        <div class="hero-content">
           <div class="eyebrow">
             <span class="pulse"></span>
             AI Business OS for easier workflows
@@ -1316,7 +1512,12 @@
 
     revealTargets.forEach((element, index) => {
       element.classList.add("reveal");
-      element.style.setProperty("--delay", `${Math.min(index * 0.035, 0.28)}s`);
+
+      if (element.classList.contains("section-head")) {
+        element.classList.add(index % 2 === 0 ? "slide-left" : "slide-right");
+      }
+
+      element.style.setProperty("--delay", `${Math.min(index * 0.035, 0.30)}s`);
     });
 
     const revealObserver = new IntersectionObserver(
@@ -1329,12 +1530,46 @@
         });
       },
       {
-        threshold: 0.15,
-        rootMargin: "0px 0px -40px 0px"
+        threshold: 0.12,
+        rootMargin: "0px 0px -50px 0px"
       }
     );
 
     revealTargets.forEach((element) => revealObserver.observe(element));
+
+    const glowCards = document.querySelectorAll(
+      ".feature-card, .price-card, .case-card, .trust-card, .step, .mini-card, .task, .panel"
+    );
+
+    glowCards.forEach((card) => {
+      card.addEventListener("mousemove", (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / rect.width) * 100;
+        const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+        card.style.setProperty("--mx", `${x}%`);
+        card.style.setProperty("--my", `${y}%`);
+      });
+    });
+
+    const mockup = document.querySelector(".mockup");
+
+    if (mockup) {
+      mockup.addEventListener("mousemove", (event) => {
+        const rect = mockup.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        const rotateY = ((x / rect.width) - 0.5) * 6;
+        const rotateX = ((y / rect.height) - 0.5) * -6;
+
+        mockup.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+
+      mockup.addEventListener("mouseleave", () => {
+        mockup.style.transform = "";
+      });
+    }
   </script>
 </body>
 </html>
