@@ -15,17 +15,19 @@
     :root {
       --bg: #07070a;
       --bg-soft: #0e0e14;
-      --card: rgba(255, 255, 255, 0.06);
-      --card-strong: rgba(255, 255, 255, 0.085);
+      --card: rgba(255, 255, 255, 0.055);
+      --card-hover: rgba(255, 255, 255, 0.068);
       --text: #f7f4ee;
       --muted: #b7b1a7;
-      --line: rgba(255, 255, 255, 0.12);
+      --line: rgba(255, 255, 255, 0.115);
       --gold: #d7b56d;
       --gold-light: #f0d38a;
       --gold-dark: #b88a35;
-      --gold-soft: rgba(215, 181, 109, 0.15);
+      --gold-soft: rgba(215, 181, 109, 0.13);
       --green: #7ee2a8;
       --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+      --shadow-soft: 0 18px 46px rgba(0, 0, 0, 0.28);
+      --shadow-hover: 0 26px 64px rgba(0, 0, 0, 0.38);
       --radius: 24px;
       --max: 1180px;
     }
@@ -43,9 +45,9 @@
     body {
       font-family: "Inter", Arial, sans-serif;
       background:
-        radial-gradient(circle at 20% 10%, rgba(215, 181, 109, 0.16), transparent 32%),
-        radial-gradient(circle at 80% 20%, rgba(126, 226, 168, 0.08), transparent 30%),
-        linear-gradient(180deg, #060609 0%, #0b0b10 45%, #07070a 100%);
+        radial-gradient(circle at 20% 10%, rgba(215, 181, 109, 0.12), transparent 32%),
+        radial-gradient(circle at 80% 18%, rgba(126, 226, 168, 0.055), transparent 30%),
+        linear-gradient(180deg, #060609 0%, #0b0b10 48%, #07070a 100%);
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
@@ -66,7 +68,7 @@
       top: 0;
       z-index: 50;
       backdrop-filter: blur(18px);
-      background: rgba(7, 7, 10, 0.72);
+      background: rgba(7, 7, 10, 0.74);
       border-bottom: 1px solid var(--line);
     }
 
@@ -95,12 +97,8 @@
       place-items: center;
       background: linear-gradient(135deg, var(--gold-light), #8d6724);
       color: #07070a;
-      box-shadow: 0 14px 35px rgba(215, 181, 109, 0.25);
+      box-shadow: 0 14px 35px rgba(215, 181, 109, 0.22);
       font-weight: 900;
-    }
-
-    .logo span:last-child {
-      color: var(--text);
     }
 
     .nav-links {
@@ -172,7 +170,7 @@
       height: 8px;
       border-radius: 50%;
       background: var(--green);
-      box-shadow: 0 0 18px rgba(126, 226, 168, 0.9);
+      box-shadow: 0 0 18px rgba(126, 226, 168, 0.75);
     }
 
     h1 {
@@ -214,13 +212,17 @@
       font-size: 15px;
       font-family: inherit;
       cursor: pointer;
-      transition: all 0.28s ease;
+      transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        background 0.28s ease,
+        border-color 0.28s ease;
     }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
       color: #07070a;
-      box-shadow: 0 16px 38px rgba(215, 181, 109, 0.22);
+      box-shadow: 0 16px 38px rgba(215, 181, 109, 0.20);
     }
 
     .btn-secondary {
@@ -231,7 +233,11 @@
 
     .btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 22px 55px rgba(215, 181, 109, 0.16);
+      box-shadow: 0 22px 55px rgba(0, 0, 0, 0.30);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 22px 55px rgba(215, 181, 109, 0.20);
     }
 
     .btn:disabled {
@@ -254,31 +260,38 @@
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.28s ease;
+      transition:
+        transform 0.28s ease,
+        border-color 0.28s ease,
+        background 0.28s ease,
+        box-shadow 0.28s ease;
     }
 
     .trust-row span:hover {
       transform: translateY(-4px);
-      border-color: rgba(215, 181, 109, 0.38);
-      background: rgba(255, 255, 255, 0.075);
+      border-color: rgba(215, 181, 109, 0.32);
+      background: rgba(255, 255, 255, 0.062);
+      box-shadow: var(--shadow-soft);
     }
 
     .hero-panel {
       position: relative;
       padding: 1px;
       border-radius: 32px;
-      background: linear-gradient(145deg, rgba(215, 181, 109, 0.48), rgba(255, 255, 255, 0.08), rgba(126, 226, 168, 0.20));
+      background: linear-gradient(145deg, rgba(215, 181, 109, 0.42), rgba(255, 255, 255, 0.08), rgba(126, 226, 168, 0.16));
       box-shadow: var(--shadow);
-      transition: all 0.3s ease;
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     }
 
     .hero-panel:hover {
       transform: translateY(-8px);
-      box-shadow: 0 34px 100px rgba(0, 0, 0, 0.55);
+      box-shadow: 0 34px 90px rgba(0, 0, 0, 0.52);
     }
 
     .dashboard-card {
-      background: rgba(8, 8, 12, 0.92);
+      background: rgba(8, 8, 12, 0.94);
       border-radius: 32px;
       padding: 26px;
       overflow: hidden;
@@ -308,18 +321,62 @@
       margin-bottom: 18px;
     }
 
+    .metric,
+    .audit-item,
+    .card,
+    .price-card,
+    .next-box,
+    .contact-form {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric::after,
+    .audit-item::after,
+    .card::after,
+    .price-card::after,
+    .next-box::after,
+    .contact-form::after {
+      content: "";
+      position: absolute;
+      top: -1px;
+      right: -1px;
+      width: 72px;
+      height: 72px;
+      border-top: 1px solid rgba(215, 181, 109, 0.34);
+      border-right: 1px solid rgba(215, 181, 109, 0.26);
+      border-radius: 0 18px 0 0;
+      opacity: 0.45;
+      pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+
+    .metric:hover::after,
+    .audit-item:hover::after,
+    .card:hover::after,
+    .price-card:hover::after,
+    .next-box:hover::after,
+    .contact-form:hover::after {
+      opacity: 0.85;
+    }
+
     .metric {
       padding: 18px;
       border-radius: 18px;
-      background: rgba(255, 255, 255, 0.055);
+      background: rgba(255, 255, 255, 0.052);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.28s ease;
+      transition:
+        transform 0.28s ease,
+        border-color 0.28s ease,
+        background 0.28s ease,
+        box-shadow 0.28s ease;
     }
 
     .metric:hover {
       transform: translateY(-5px);
-      border-color: rgba(215, 181, 109, 0.38);
-      background: rgba(255, 255, 255, 0.075);
+      border-color: rgba(215, 181, 109, 0.32);
+      background: rgba(255, 255, 255, 0.064);
+      box-shadow: var(--shadow-soft);
     }
 
     .metric small {
@@ -346,16 +403,22 @@
       gap: 14px;
       padding: 14px;
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.045);
+      background: rgba(255, 255, 255, 0.042);
+      border: 1px solid rgba(255, 255, 255, 0.065);
       color: var(--muted);
       font-size: 14px;
-      transition: all 0.28s ease;
+      transition:
+        transform 0.28s ease,
+        border-color 0.28s ease,
+        background 0.28s ease,
+        box-shadow 0.28s ease;
     }
 
     .audit-item:hover {
       transform: translateY(-4px);
-      border-color: rgba(215, 181, 109, 0.38);
-      background: rgba(255, 255, 255, 0.065);
+      border-color: rgba(215, 181, 109, 0.30);
+      background: rgba(255, 255, 255, 0.057);
+      box-shadow: var(--shadow-soft);
     }
 
     .audit-item b {
@@ -408,14 +471,19 @@
       border-radius: var(--radius);
       background: var(--card);
       border: 1px solid var(--line);
-      transition: all 0.3s ease;
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.18);
+      transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
     }
 
     .card:hover {
       transform: translateY(-8px);
-      border-color: rgba(215, 181, 109, 0.42);
-      background: var(--card-strong);
-      box-shadow: 0 24px 70px rgba(215, 181, 109, 0.10);
+      border-color: rgba(215, 181, 109, 0.34);
+      background: var(--card-hover);
+      box-shadow: var(--shadow-hover);
     }
 
     .icon {
@@ -450,24 +518,28 @@
     }
 
     .price-card {
-      position: relative;
       padding: 30px;
       border-radius: 28px;
-      background: rgba(255, 255, 255, 0.055);
+      background: rgba(255, 255, 255, 0.052);
       border: 1px solid rgba(255, 255, 255, 0.11);
-      transition: all 0.3s ease;
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.18);
+      transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
     }
 
     .price-card:hover {
       transform: translateY(-9px);
-      border-color: rgba(215, 181, 109, 0.45);
-      box-shadow: 0 28px 80px rgba(215, 181, 109, 0.12);
+      border-color: rgba(215, 181, 109, 0.36);
+      background: rgba(255, 255, 255, 0.066);
+      box-shadow: var(--shadow-hover);
     }
 
     .featured {
-      background:
-        linear-gradient(180deg, rgba(215, 181, 109, 0.16), rgba(255, 255, 255, 0.055));
-      border-color: rgba(215, 181, 109, 0.42);
+      background: rgba(215, 181, 109, 0.08);
+      border-color: rgba(215, 181, 109, 0.34);
     }
 
     .popular {
@@ -540,11 +612,19 @@
       align-items: start;
       padding: 42px;
       border-radius: 34px;
-      background:
-        radial-gradient(circle at top left, rgba(215, 181, 109, 0.18), transparent 36%),
-        rgba(255, 255, 255, 0.055);
-      border: 1px solid rgba(215, 181, 109, 0.20);
+      background: rgba(255, 255, 255, 0.052);
+      border: 1px solid rgba(215, 181, 109, 0.18);
       box-shadow: var(--shadow);
+      transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .contact-grid:hover {
+      transform: translateY(-6px);
+      border-color: rgba(215, 181, 109, 0.30);
+      box-shadow: 0 34px 90px rgba(0, 0, 0, 0.48);
     }
 
     .contact-info {
@@ -558,6 +638,18 @@
       border-radius: 22px;
       background: rgba(7, 7, 10, 0.58);
       border: 1px solid rgba(255, 255, 255, 0.10);
+      transition:
+        transform 0.28s ease,
+        border-color 0.28s ease,
+        background 0.28s ease,
+        box-shadow 0.28s ease;
+    }
+
+    .next-box:hover {
+      transform: translateY(-5px);
+      border-color: rgba(215, 181, 109, 0.30);
+      background: rgba(255, 255, 255, 0.052);
+      box-shadow: var(--shadow-soft);
     }
 
     .next-box h3 {
@@ -616,6 +708,16 @@
       border-radius: 26px;
       background: rgba(7, 7, 10, 0.72);
       border: 1px solid rgba(255, 255, 255, 0.10);
+      transition:
+        transform 0.28s ease,
+        border-color 0.28s ease,
+        box-shadow 0.28s ease;
+    }
+
+    .contact-form:hover {
+      transform: translateY(-5px);
+      border-color: rgba(215, 181, 109, 0.28);
+      box-shadow: var(--shadow-soft);
     }
 
     .form-row {
@@ -779,8 +881,12 @@
     }
 
     @media (max-width: 520px) {
+      .container {
+        width: min(100% - 28px, var(--max));
+      }
+
       nav {
-        height: 68px;
+        min-height: 68px;
       }
 
       .hero {
@@ -1253,7 +1359,7 @@
     });
 
     const revealTargets = document.querySelectorAll(
-      ".hero-copy-wrap, .hero-panel, .section-head, .card, .price-card, .contact-grid, .metric, .audit-item"
+      ".hero-copy-wrap, .hero-panel, .section-head, .card, .price-card, .contact-grid, .metric, .audit-item, .next-box, .contact-form"
     );
 
     revealTargets.forEach((element, index) => {
