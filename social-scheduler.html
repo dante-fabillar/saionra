@@ -9,20 +9,21 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --bg: #07070a;
-      --bg-2: #0a0b10;
-      --sidebar: #0d1423;
-      --panel: rgba(255, 255, 255, 0.055);
-      --panel-2: rgba(255, 255, 255, 0.075);
-      --field: rgba(255, 255, 255, 0.06);
+      --bg-soft: #0b0c12;
+      --sidebar: #0b1220;
+      --panel: rgba(255, 255, 255, 0.052);
+      --panel-strong: rgba(255, 255, 255, 0.072);
+      --field: rgba(255, 255, 255, 0.065);
       --text: #f7f4ee;
-      --muted: #b7b1a7;
-      --muted-2: #837d72;
-      --line: rgba(255, 255, 255, 0.115);
+      --muted: #b9b1a3;
+      --muted-soft: #8e8679;
+      --line: rgba(255, 255, 255, 0.11);
+      --line-soft: rgba(255, 255, 255, 0.075);
       --gold: #d7b56d;
       --gold-light: #f0d38a;
       --gold-dark: #b88a35;
@@ -31,11 +32,9 @@
       --green-soft: rgba(126, 226, 168, 0.13);
       --red: #fb7185;
       --red-soft: rgba(251, 113, 133, 0.12);
-      --blue: #8ab4f8;
-      --blue-soft: rgba(138, 180, 248, 0.12);
       --radius: 22px;
-      --shadow: 0 20px 70px rgba(0, 0, 0, 0.28);
-      --sidebar-width: 270px;
+      --sidebar-width: 260px;
+      --content-max: 1500px;
     }
 
     * {
@@ -53,10 +52,10 @@
       font-family: "Inter", Arial, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 18% 10%, rgba(215, 181, 109, 0.12), transparent 29%),
-        radial-gradient(circle at 86% 18%, rgba(126, 226, 168, 0.06), transparent 24%),
-        linear-gradient(180deg, #060609 0%, #0b0c11 54%, #07070a 100%);
-      line-height: 1.5;
+        radial-gradient(circle at 18% 8%, rgba(215, 181, 109, 0.10), transparent 30%),
+        radial-gradient(circle at 92% 0%, rgba(126, 226, 168, 0.045), transparent 26%),
+        linear-gradient(180deg, #060609 0%, #0b0c12 46%, #07070a 100%);
+      line-height: 1.55;
       overflow-x: hidden;
     }
 
@@ -83,7 +82,7 @@
 
     .app-shell {
       display: grid;
-      grid-template-columns: var(--sidebar-width) 1fr;
+      grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
       min-height: 100vh;
     }
 
@@ -91,10 +90,10 @@
       position: sticky;
       top: 0;
       height: 100vh;
-      padding: 24px 18px;
+      padding: 22px 16px;
       background:
-        linear-gradient(180deg, rgba(13, 20, 35, 0.98), rgba(8, 10, 17, 0.98)),
-        radial-gradient(circle at 30% 0%, rgba(215, 181, 109, 0.10), transparent 40%);
+        linear-gradient(180deg, rgba(11, 18, 32, 0.98), rgba(8, 10, 17, 0.98)),
+        radial-gradient(circle at 30% 0%, rgba(215, 181, 109, 0.10), transparent 42%);
       border-right: 1px solid rgba(255, 255, 255, 0.08);
       overflow-y: auto;
     }
@@ -104,31 +103,34 @@
       align-items: center;
       gap: 12px;
       margin-bottom: 24px;
+      padding: 0 6px;
     }
 
     .brand-mark {
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       display: grid;
       place-items: center;
       border-radius: 14px;
       color: #07070a;
       background: linear-gradient(135deg, #fff4c4, var(--gold-dark));
-      font-weight: 900;
-      box-shadow: 0 12px 28px rgba(215, 181, 109, 0.18);
+      font-weight: 800;
     }
 
     .brand strong {
       display: block;
-      font-size: 21px;
-      letter-spacing: -0.6px;
+      font-size: 20px;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
     }
 
-    .brand span {
+    .brand span span {
       display: block;
+      max-width: 160px;
+      margin-top: 3px;
       color: var(--muted);
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 500;
     }
 
     .sidebar-section {
@@ -140,14 +142,14 @@
       padding: 0 10px;
       color: rgba(247, 244, 238, 0.46);
       font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 1.2px;
+      font-weight: 700;
+      letter-spacing: 1.1px;
       text-transform: uppercase;
     }
 
     .nav-list {
       display: grid;
-      gap: 7px;
+      gap: 6px;
     }
 
     .nav-link {
@@ -155,51 +157,57 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      min-height: 42px;
+      min-height: 40px;
       padding: 10px 12px;
       border-radius: 14px;
-      color: rgba(247, 244, 238, 0.78);
+      color: rgba(247, 244, 238, 0.76);
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 600;
       border: 1px solid transparent;
-      transition: transform 0.24s ease, background 0.24s ease, color 0.24s ease, border-color 0.24s ease;
+      background: transparent;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
     }
 
     .nav-link:hover,
     .nav-link.active {
       color: var(--text);
-      background: rgba(255, 255, 255, 0.075);
-      border-color: rgba(215, 181, 109, 0.16);
-      transform: translateX(2px);
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(215, 181, 109, 0.14);
     }
 
     .nav-link small {
       color: #f7d991;
       font-size: 11px;
-      font-weight: 900;
+      font-weight: 700;
     }
 
     .sidebar-note {
-      margin-top: 28px;
-      padding: 16px;
+      margin-top: 26px;
+      padding: 15px;
       border-radius: 18px;
       color: var(--muted);
-      background: rgba(255, 255, 255, 0.055);
-      border: 1px solid rgba(215, 181, 109, 0.14);
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(215, 181, 109, 0.13);
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 400;
     }
 
     .sidebar-note b {
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
       color: var(--text);
       font-size: 13px;
+      font-weight: 650;
     }
 
     .main {
       min-width: 0;
       padding: 28px;
+    }
+
+    .content-wrap {
+      width: min(100%, var(--content-max));
+      margin: 0 auto;
     }
 
     .topbar {
@@ -210,33 +218,38 @@
       justify-content: space-between;
       align-items: center;
       gap: 18px;
-      margin: -28px -28px 26px;
-      padding: 18px 28px;
+      margin: -28px -28px 24px;
+      padding: 16px 28px;
       backdrop-filter: blur(18px);
-      background: rgba(7, 7, 10, 0.78);
+      background: rgba(7, 7, 10, 0.82);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
+    .topbar-title {
+      min-width: 0;
+    }
+
     .topbar h1 {
-      font-size: clamp(26px, 3vw, 38px);
-      line-height: 1;
-      letter-spacing: -1.5px;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.05;
+      letter-spacing: -1px;
+      font-weight: 750;
     }
 
     .topbar p {
-      margin-top: 7px;
-      max-width: 740px;
+      margin-top: 6px;
+      max-width: 680px;
       color: var(--muted);
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 400;
     }
 
     .topbar-actions {
       display: flex;
       align-items: center;
+      justify-content: flex-end;
       gap: 10px;
       flex-wrap: wrap;
-      justify-content: flex-end;
     }
 
     .mobile-menu {
@@ -248,34 +261,32 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      min-height: 42px;
-      padding: 11px 15px;
+      min-height: 40px;
+      padding: 10px 14px;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.14);
       color: var(--text);
       background: rgba(255, 255, 255, 0.055);
       font-size: 13px;
-      font-weight: 900;
-      transition: transform 0.24s ease, background 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+      font-weight: 650;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
       white-space: nowrap;
     }
 
     .btn:hover {
-      transform: translateY(-2px);
       background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(215, 181, 109, 0.28);
+      border-color: rgba(215, 181, 109, 0.26);
     }
 
     .btn-primary {
       color: #07070a;
       background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
       border-color: rgba(215, 181, 109, 0.45);
-      box-shadow: 0 12px 28px rgba(215, 181, 109, 0.12);
+      font-weight: 750;
     }
 
     .btn-primary:hover {
       background: linear-gradient(135deg, #fff0b0, var(--gold));
-      box-shadow: 0 16px 34px rgba(215, 181, 109, 0.16);
     }
 
     .btn-danger {
@@ -290,37 +301,149 @@
       font-size: 12px;
     }
 
-    .layout-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
-      gap: 18px;
-      align-items: start;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 14px;
-      margin-bottom: 18px;
-    }
-
+    .overview-panel,
     .panel,
     .stat-card,
     .post-card,
     .day-card,
     .assistant-step,
-    .empty-state {
-      position: relative;
-      overflow: hidden;
+    .empty-state,
+    .preview-card {
       border: 1px solid var(--line);
       background: var(--panel);
       box-shadow: none;
     }
 
+    .overview-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 18px;
+      padding: 20px;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.035)),
+        radial-gradient(circle at 94% 0%, rgba(215, 181, 109, 0.12), transparent 28%);
+    }
+
+    .overview-copy h2 {
+      max-width: 760px;
+      margin-bottom: 10px;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.02;
+      letter-spacing: -1.7px;
+      font-weight: 780;
+    }
+
+    .overview-copy p {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    .overview-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .focus-box {
+      display: grid;
+      align-content: space-between;
+      gap: 16px;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(7, 7, 10, 0.45);
+      border: 1px solid rgba(215, 181, 109, 0.15);
+    }
+
+    .focus-box span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .focus-box strong {
+      display: block;
+      font-size: 26px;
+      line-height: 1.1;
+      letter-spacing: -0.7px;
+      font-weight: 750;
+    }
+
+    .focus-box p {
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 400;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .stat-card {
+      min-height: 96px;
+      padding: 15px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.048);
+    }
+
+    .stat-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .stat-card strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: -0.8px;
+      font-weight: 760;
+    }
+
+    .stat-card small {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted-soft);
+      font-size: 11px;
+      font-weight: 400;
+    }
+
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .sticky-side {
+      position: sticky;
+      top: 98px;
+    }
+
     .panel {
       padding: 20px;
       border-radius: var(--radius);
-      margin-bottom: 18px;
+      scroll-margin-top: 96px;
     }
 
     .panel-header {
@@ -334,55 +457,24 @@
     .panel-eyebrow {
       color: var(--gold);
       font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 1.3px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     .panel h2 {
-      font-size: 21px;
-      line-height: 1.15;
-      letter-spacing: -0.7px;
+      font-size: 20px;
+      line-height: 1.18;
+      letter-spacing: -0.5px;
+      font-weight: 720;
     }
 
     .panel p,
     .helper-text {
       color: var(--muted);
       font-size: 13px;
-      font-weight: 600;
-    }
-
-    .stat-card {
-      min-height: 112px;
-      padding: 17px;
-      border-radius: 20px;
-    }
-
-    .stat-card span {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .stat-card strong {
-      display: block;
-      margin-top: 8px;
-      font-size: 31px;
-      line-height: 1;
-      letter-spacing: -1px;
-    }
-
-    .stat-card small {
-      display: block;
-      margin-top: 8px;
-      color: var(--muted-2);
-      font-size: 11px;
-      font-weight: 800;
+      font-weight: 400;
     }
 
     .form-grid {
@@ -402,9 +494,9 @@
     }
 
     label {
-      color: rgba(247, 244, 238, 0.9);
+      color: rgba(247, 244, 238, 0.86);
       font-size: 12px;
-      font-weight: 900;
+      font-weight: 600;
     }
 
     input,
@@ -418,11 +510,13 @@
       outline: none;
       color: var(--text);
       background: var(--field);
-      transition: border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+      font-size: 14px;
+      font-weight: 400;
+      transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
     }
 
     textarea {
-      min-height: 118px;
+      min-height: 110px;
       resize: vertical;
     }
 
@@ -437,7 +531,7 @@
 
     input::placeholder,
     textarea::placeholder {
-      color: rgba(183, 177, 167, 0.58);
+      color: rgba(183, 177, 167, 0.56);
     }
 
     input:focus,
@@ -445,7 +539,7 @@
     select:focus {
       border-color: rgba(215, 181, 109, 0.54);
       background: rgba(255, 255, 255, 0.078);
-      box-shadow: 0 0 0 4px rgba(215, 181, 109, 0.09);
+      box-shadow: 0 0 0 4px rgba(215, 181, 109, 0.08);
     }
 
     .form-actions,
@@ -471,11 +565,11 @@
     .filter-row input,
     .filter-row select {
       min-height: 40px;
-      max-width: 210px;
+      max-width: 220px;
     }
 
     .filter-row input {
-      max-width: 290px;
+      max-width: 310px;
     }
 
     .chip-row {
@@ -488,20 +582,20 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      padding: 7px 10px;
+      padding: 6px 10px;
       border-radius: 999px;
       color: #f7d991;
       background: rgba(215, 181, 109, 0.10);
-      border: 1px solid rgba(215, 181, 109, 0.18);
+      border: 1px solid rgba(215, 181, 109, 0.17);
       font-size: 11px;
-      font-weight: 900;
+      font-weight: 650;
       white-space: nowrap;
     }
 
     .chip.neutral {
       color: rgba(247, 244, 238, 0.82);
-      background: rgba(255, 255, 255, 0.065);
-      border-color: rgba(255, 255, 255, 0.11);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.10);
     }
 
     .chip.green {
@@ -517,23 +611,21 @@
     }
 
     .generated-box {
-      min-height: 158px;
+      min-height: 146px;
       padding: 15px;
       border-radius: 18px;
       color: rgba(247, 244, 238, 0.86);
       white-space: pre-wrap;
-      background: rgba(7, 7, 10, 0.58);
-      border: 1px dashed rgba(215, 181, 109, 0.24);
+      background: rgba(7, 7, 10, 0.52);
+      border: 1px dashed rgba(215, 181, 109, 0.23);
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 400;
     }
 
     .preview-card {
-      padding: 18px;
+      padding: 16px;
       border-radius: 20px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.045));
-      border: 1px solid rgba(255, 255, 255, 0.105);
+      background: rgba(255, 255, 255, 0.048);
     }
 
     .preview-top {
@@ -541,72 +633,80 @@
       justify-content: space-between;
       gap: 12px;
       align-items: center;
-      margin-bottom: 14px;
+      margin-bottom: 13px;
     }
 
     .avatar-row {
       display: flex;
       align-items: center;
       gap: 10px;
+      min-width: 0;
     }
 
     .avatar {
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
+      flex: 0 0 38px;
       display: grid;
       place-items: center;
       border-radius: 999px;
       color: #07070a;
       background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
       font-size: 14px;
-      font-weight: 900;
+      font-weight: 750;
     }
 
     .preview-brand {
       display: block;
       font-size: 14px;
-      font-weight: 900;
+      font-weight: 650;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .preview-date {
       display: block;
       color: var(--muted);
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 400;
     }
 
     .media-box {
       display: grid;
       place-items: center;
-      min-height: 210px;
-      margin: 14px 0;
+      min-height: 190px;
+      margin: 13px 0;
+      padding: 18px;
       border-radius: 18px;
-      color: rgba(247, 244, 238, 0.54);
+      color: rgba(247, 244, 238, 0.55);
       background:
-        radial-gradient(circle at 50% 40%, rgba(215, 181, 109, 0.15), transparent 40%),
-        rgba(255, 255, 255, 0.055);
-      border: 1px solid rgba(255, 255, 255, 0.10);
+        radial-gradient(circle at 50% 38%, rgba(215, 181, 109, 0.12), transparent 42%),
+        rgba(255, 255, 255, 0.048);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      text-align: center;
       font-size: 13px;
-      font-weight: 900;
+      font-weight: 500;
     }
 
     .preview-caption {
-      color: rgba(247, 244, 238, 0.88);
+      color: rgba(247, 244, 238, 0.86);
       font-size: 13px;
       white-space: pre-wrap;
+      font-weight: 400;
     }
 
     .queue-list {
       display: grid;
-      gap: 12px;
+      gap: 10px;
     }
 
     .post-card {
       display: grid;
       gap: 12px;
-      padding: 16px;
+      padding: 15px;
       border-radius: 18px;
-      background: rgba(255, 255, 255, 0.052);
+      background: rgba(255, 255, 255, 0.045);
     }
 
     .post-card-top {
@@ -619,41 +719,43 @@
     .post-card h3 {
       margin-bottom: 4px;
       font-size: 15px;
-      letter-spacing: -0.3px;
+      letter-spacing: -0.2px;
+      font-weight: 650;
     }
 
     .post-card p {
       color: var(--muted);
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 400;
     }
 
     .post-snippet {
-      padding: 11px 12px;
+      padding: 10px 11px;
       border-radius: 14px;
       color: rgba(247, 244, 238, 0.82);
-      background: rgba(7, 7, 10, 0.44);
-      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(7, 7, 10, 0.40);
+      border: 1px solid rgba(255, 255, 255, 0.065);
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 400;
     }
 
     .calendar-grid {
       display: grid;
       grid-template-columns: repeat(7, minmax(0, 1fr));
-      gap: 10px;
+      gap: 9px;
     }
 
     .day-card {
-      min-height: 116px;
-      padding: 12px;
+      min-height: 112px;
+      padding: 11px;
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.045);
+      background: rgba(255, 255, 255, 0.043);
     }
 
     .day-card strong {
       display: block;
       font-size: 12px;
+      font-weight: 650;
     }
 
     .day-card span {
@@ -661,22 +763,29 @@
       margin-top: 3px;
       color: var(--muted);
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 400;
     }
 
     .day-pill {
       display: block;
-      margin-top: 9px;
+      margin-top: 8px;
       padding: 7px 8px;
       border-radius: 10px;
       color: #f7d991;
-      background: rgba(215, 181, 109, 0.10);
-      border: 1px solid rgba(215, 181, 109, 0.16);
+      background: rgba(215, 181, 109, 0.095);
+      border: 1px solid rgba(215, 181, 109, 0.14);
       font-size: 10px;
-      font-weight: 900;
+      font-weight: 600;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+
+    .day-pill.open {
+      color: var(--muted-soft);
+      background: rgba(255, 255, 255, 0.035);
+      border-color: rgba(255, 255, 255, 0.06);
+      font-weight: 400;
     }
 
     .assistant-grid {
@@ -686,45 +795,46 @@
 
     .assistant-step {
       display: grid;
-      grid-template-columns: 34px 1fr;
+      grid-template-columns: 32px 1fr;
       gap: 11px;
       padding: 12px;
       border-radius: 15px;
-      background: rgba(255, 255, 255, 0.045);
+      background: rgba(255, 255, 255, 0.043);
     }
 
     .assistant-step span {
-      width: 34px;
-      height: 34px;
+      width: 32px;
+      height: 32px;
       display: grid;
       place-items: center;
       border-radius: 999px;
       color: #07070a;
       background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
       font-size: 12px;
-      font-weight: 900;
+      font-weight: 750;
     }
 
     .assistant-step b {
       display: block;
       margin-bottom: 3px;
       font-size: 13px;
+      font-weight: 650;
     }
 
     .assistant-step p {
       color: var(--muted);
       font-size: 12px;
-      font-weight: 650;
+      font-weight: 400;
     }
 
     .empty-state {
       padding: 20px;
       border-radius: 18px;
       color: var(--muted);
-      background: rgba(255, 255, 255, 0.045);
+      background: rgba(255, 255, 255, 0.043);
       text-align: center;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 400;
     }
 
     .toast {
@@ -738,81 +848,33 @@
       color: #c8f9d9;
       background: rgba(9, 15, 13, 0.94);
       border: 1px solid rgba(126, 226, 168, 0.24);
-      box-shadow: var(--shadow);
-      transform: translateY(18px);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.24s ease, transform 0.24s ease;
+      transition: opacity 0.22s ease;
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 500;
     }
 
     .toast.show {
       opacity: 1;
-      transform: translateY(0);
-    }
-
-    .float-card {
-      will-change: transform;
-      transition: transform 0.3s cubic-bezier(.2,.8,.2,1), border-color 0.3s ease;
-    }
-
-    .float-card:hover {
-      transform: translateY(-6px);
-      box-shadow: none !important;
-    }
-
-    .edge-card {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-    }
-
-    .edge-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      padding: 1px;
-      border-radius: inherit;
-      pointer-events: none;
-      opacity: 0;
-      background:
-        radial-gradient(
-          220px circle at var(--edge-x, 50%) var(--edge-y, 50%),
-          rgba(240, 211, 138, 0.92),
-          rgba(215, 181, 109, 0.43) 24%,
-          rgba(215, 181, 109, 0.10) 46%,
-          transparent 70%
-        );
-      -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      transition: opacity 0.28s ease;
-    }
-
-    .edge-card:hover::before {
-      opacity: 1;
-    }
-
-    .edge-card > * {
-      position: relative;
-      z-index: 1;
     }
 
     .hide {
       display: none !important;
     }
 
-    @media (max-width: 1180px) {
+    @media (max-width: 1250px) {
       .stats-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
-      .layout-grid {
+      .workspace-grid,
+      .overview-panel {
         grid-template-columns: 1fr;
+      }
+
+      .sticky-side {
+        position: static;
       }
 
       .calendar-grid {
@@ -827,15 +889,14 @@
 
       .sidebar {
         position: fixed;
-        inset: 0 auto 0 0;
+        inset: 0 auto 0 -290px;
         z-index: 70;
         width: min(84vw, var(--sidebar-width));
-        transform: translateX(-105%);
-        transition: transform 0.25s ease;
+        transition: left 0.24s ease;
       }
 
       body.sidebar-open .sidebar {
-        transform: translateX(0);
+        left: 0;
       }
 
       .mobile-menu {
@@ -881,14 +942,16 @@
         max-width: none;
       }
 
+      .overview-panel,
+      .panel {
+        padding: 17px;
+        border-radius: 20px;
+      }
+
       .stats-grid,
       .form-grid,
       .calendar-grid {
         grid-template-columns: 1fr;
-      }
-
-      .panel {
-        padding: 17px;
       }
     }
   </style>
@@ -909,15 +972,15 @@
         <nav class="nav-list" aria-label="Social Scheduler Navigation">
           <a class="nav-link active" href="#overview">Overview <small>Live</small></a>
           <a class="nav-link" href="#create">Create Post</a>
-          <a class="nav-link" href="#creator">AI Creator</a>
+          <a class="nav-link" href="#creator">Caption Builder</a>
+          <a class="nav-link" href="#queue">Content Queue</a>
           <a class="nav-link" href="#calendar">Calendar</a>
-          <a class="nav-link" href="#queue">Draft Manager</a>
-          <a class="nav-link" href="#assistant">Posting Assistant</a>
+          <a class="nav-link" href="#assistant">Posting Steps</a>
         </nav>
       </div>
 
       <div class="sidebar-section">
-        <div class="sidebar-label">Coming Soon</div>
+        <div class="sidebar-label">Later Integrations</div>
         <div class="nav-list">
           <span class="nav-link">Meta Auto-Posting <small>API</small></span>
           <span class="nav-link">Analytics <small>GA4</small></span>
@@ -926,9 +989,9 @@
         </div>
       </div>
 
-      <div class="sidebar-note edge-card">
-        <b>Clean first version</b>
-        Plan, write, save, filter, export, and manually post content now. Auto-posting can connect later without rebuilding the UI.
+      <div class="sidebar-note">
+        <b>Stable first version</b>
+        Plan, write, save, filter, export, and post manually now. Auto-posting can connect later without changing the full interface.
       </div>
     </aside>
 
@@ -936,9 +999,9 @@
       <header class="topbar">
         <button class="btn mobile-menu" id="mobileMenuButton" type="button">Menu</button>
 
-        <div>
+        <div class="topbar-title">
           <h1>Social Scheduler</h1>
-          <p>Create, plan, approve, and organize content from one calm Saionra dashboard.</p>
+          <p>Create, plan, approve, and organize posts in one clean Saionra workspace.</p>
         </div>
 
         <div class="topbar-actions">
@@ -947,63 +1010,170 @@
         </div>
       </header>
 
-      <section id="overview" aria-label="Overview">
-        <div class="stats-grid">
-          <article class="stat-card float-card edge-card">
-            <span>Total Posts <small>All</small></span>
+      <div class="content-wrap">
+        <section id="overview" class="overview-panel" aria-label="Overview">
+          <div class="overview-copy">
+            <div class="panel-eyebrow">Dashboard</div>
+            <h2>Plan social content without a messy workflow.</h2>
+            <p>Use this module to draft posts, organize schedules, prepare captions, check the queue, and export content for manual posting or future API publishing.</p>
+            <div class="overview-actions">
+              <span class="chip">Content planning</span>
+              <span class="chip neutral">Manual posting ready</span>
+              <span class="chip green">Future API friendly</span>
+            </div>
+          </div>
+
+          <div class="focus-box">
+            <div>
+              <span>Today’s Focus</span>
+              <strong id="todayFocusTitle">No urgent posts</strong>
+              <p id="todayFocusText">Posts scheduled for today will appear here after you save them.</p>
+            </div>
+            <button class="btn btn-primary" id="jumpQueueButton" type="button">Review Queue</button>
+          </div>
+        </section>
+
+        <section class="stats-grid" aria-label="Post Stats">
+          <article class="stat-card">
+            <span>Total Posts</span>
             <strong id="statTotal">0</strong>
             <small>Saved in this browser</small>
           </article>
 
-          <article class="stat-card float-card edge-card">
-            <span>Drafts <small>Plan</small></span>
+          <article class="stat-card">
+            <span>Drafts</span>
             <strong id="statDrafts">0</strong>
             <small>Needs review</small>
           </article>
 
-          <article class="stat-card float-card edge-card">
-            <span>Scheduled <small>Queue</small></span>
+          <article class="stat-card">
+            <span>Scheduled</span>
             <strong id="statScheduled">0</strong>
-            <small>Ready for calendar</small>
+            <small>Planned content</small>
           </article>
 
-          <article class="stat-card float-card edge-card">
-            <span>Ready Today <small>Action</small></span>
+          <article class="stat-card">
+            <span>Ready Today</span>
             <strong id="statReadyToday">0</strong>
             <small>Manual posting focus</small>
           </article>
 
-          <article class="stat-card float-card edge-card">
-            <span>Posted <small>Done</small></span>
+          <article class="stat-card">
+            <span>Posted</span>
             <strong id="statPosted">0</strong>
             <small>Completed content</small>
           </article>
-        </div>
-      </section>
+        </section>
 
-      <div class="layout-grid">
-        <div>
-          <section class="panel float-card edge-card" id="create" aria-label="Create Scheduled Post">
-            <div class="panel-header">
-              <div>
-                <div class="panel-eyebrow">Planner</div>
-                <h2 id="formTitle">Create Scheduled Post</h2>
-                <p>Add the content, platform, schedule, media note, caption, and internal reminder.</p>
-              </div>
-              <div class="chip-row">
-                <span class="chip neutral" id="editStatusChip">New post</span>
-              </div>
-            </div>
-
-            <form class="form-grid" id="postForm">
-              <div class="field">
-                <label for="postTitle">Post Title</label>
-                <input type="text" id="postTitle" name="postTitle" placeholder="Example: Immigration consultation promo" required>
+        <div class="workspace-grid">
+          <div class="stack">
+            <section class="panel" id="create" aria-label="Create Scheduled Post">
+              <div class="panel-header">
+                <div>
+                  <div class="panel-eyebrow">Planner</div>
+                  <h2 id="formTitle">Create Scheduled Post</h2>
+                  <p>Add the platform, schedule, caption, media note, and internal reminders.</p>
+                </div>
+                <div class="chip-row">
+                  <span class="chip neutral" id="editStatusChip">New post</span>
+                </div>
               </div>
 
-              <div class="field">
-                <label for="platform">Platform</label>
-                <select id="platform" name="platform" required>
+              <form class="form-grid" id="postForm">
+                <div class="field">
+                  <label for="postTitle">Post Title</label>
+                  <input type="text" id="postTitle" name="postTitle" placeholder="Example: Immigration consultation promo" required>
+                </div>
+
+                <div class="field">
+                  <label for="platform">Platform</label>
+                  <select id="platform" name="platform" required>
+                    <option value="Instagram">Instagram</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="LinkedIn">LinkedIn</option>
+                    <option value="TikTok">TikTok</option>
+                    <option value="YouTube Shorts">YouTube Shorts</option>
+                    <option value="X / Twitter">X / Twitter</option>
+                    <option value="Pinterest">Pinterest</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="postType">Post Type</label>
+                  <select id="postType" name="postType" required>
+                    <option value="Single Image">Single Image</option>
+                    <option value="Carousel">Carousel</option>
+                    <option value="Short Video / Reel">Short Video / Reel</option>
+                    <option value="Story">Story</option>
+                    <option value="Text Post">Text Post</option>
+                    <option value="Link Post">Link Post</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="status">Status</label>
+                  <select id="status" name="status" required>
+                    <option value="Draft">Draft</option>
+                    <option value="Scheduled">Scheduled</option>
+                    <option value="Ready">Ready</option>
+                    <option value="Posted">Posted</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="scheduleDateTime">Schedule Date & Time</label>
+                  <input type="datetime-local" id="scheduleDateTime" name="scheduleDateTime">
+                </div>
+
+                <div class="field">
+                  <label for="mediaUrl">Media URL / File Note</label>
+                  <input type="text" id="mediaUrl" name="mediaUrl" placeholder="Paste image/video link or file note">
+                </div>
+
+                <div class="full-field">
+                  <label for="caption">Caption</label>
+                  <textarea id="caption" name="caption" placeholder="Write or generate your caption here..."></textarea>
+                </div>
+
+                <div class="full-field">
+                  <label for="internalNotes">Internal Notes</label>
+                  <textarea id="internalNotes" name="internalNotes" placeholder="Client notes, CTA, asset reminder, posting checklist..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                  <div class="chip-row">
+                    <span class="chip" id="scheduleHint">No schedule selected</span>
+                    <span class="chip neutral" id="previewPlatformChip">Instagram</span>
+                  </div>
+
+                  <div class="post-actions">
+                    <button class="btn" id="cancelEditButton" type="button">Clear</button>
+                    <button class="btn btn-primary" id="savePostButton" type="submit">Save Post</button>
+                  </div>
+                </div>
+              </form>
+            </section>
+
+            <section class="panel" id="queue" aria-label="Content Queue">
+              <div class="panel-header">
+                <div>
+                  <div class="panel-eyebrow">Manager</div>
+                  <h2>Content Queue</h2>
+                  <p>Review drafts, scheduled posts, ready posts, and completed posts.</p>
+                </div>
+              </div>
+
+              <div class="filter-row">
+                <input type="search" id="searchInput" placeholder="Search title or caption">
+                <select id="filterStatus">
+                  <option value="All">All Statuses</option>
+                  <option value="Draft">Draft</option>
+                  <option value="Scheduled">Scheduled</option>
+                  <option value="Ready">Ready</option>
+                  <option value="Posted">Posted</option>
+                </select>
+                <select id="filterPlatform">
+                  <option value="All">All Platforms</option>
                   <option value="Instagram">Instagram</option>
                   <option value="Facebook">Facebook</option>
                   <option value="LinkedIn">LinkedIn</option>
@@ -1014,244 +1184,159 @@
                 </select>
               </div>
 
-              <div class="field">
-                <label for="postType">Post Type</label>
-                <select id="postType" name="postType" required>
-                  <option value="Single Image">Single Image</option>
-                  <option value="Carousel">Carousel</option>
-                  <option value="Short Video / Reel">Short Video / Reel</option>
-                  <option value="Story">Story</option>
-                  <option value="Text Post">Text Post</option>
-                  <option value="Link Post">Link Post</option>
-                </select>
-              </div>
+              <div class="queue-list" id="queueList"></div>
+            </section>
 
-              <div class="field">
-                <label for="status">Status</label>
-                <select id="status" name="status" required>
-                  <option value="Draft">Draft</option>
-                  <option value="Scheduled">Scheduled</option>
-                  <option value="Ready">Ready</option>
-                  <option value="Posted">Posted</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label for="scheduleDateTime">Schedule Date & Time</label>
-                <input type="datetime-local" id="scheduleDateTime" name="scheduleDateTime">
-              </div>
-
-              <div class="field">
-                <label for="mediaUrl">Media URL / File Note</label>
-                <input type="text" id="mediaUrl" name="mediaUrl" placeholder="Paste image/video link or file note">
-              </div>
-
-              <div class="full-field">
-                <label for="caption">Caption</label>
-                <textarea id="caption" name="caption" placeholder="Write or generate your caption here..."></textarea>
-              </div>
-
-              <div class="full-field">
-                <label for="internalNotes">Internal Notes</label>
-                <textarea id="internalNotes" name="internalNotes" placeholder="Client notes, CTA, asset reminder, posting checklist..."></textarea>
-              </div>
-
-              <div class="form-actions">
-                <div class="chip-row">
-                  <span class="chip" id="scheduleHint">No schedule selected</span>
-                  <span class="chip neutral" id="previewPlatformChip">Instagram</span>
-                </div>
-
-                <div class="post-actions">
-                  <button class="btn" id="cancelEditButton" type="button">Clear</button>
-                  <button class="btn btn-primary" id="savePostButton" type="submit">Save Post</button>
-                </div>
-              </div>
-            </form>
-          </section>
-
-          <section class="panel float-card edge-card" id="queue" aria-label="Draft Manager">
-            <div class="panel-header">
-              <div>
-                <div class="panel-eyebrow">Manager</div>
-                <h2>Content Queue</h2>
-                <p>Filter drafts, scheduled posts, ready posts, and posted content without jumping across tools.</p>
-              </div>
-            </div>
-
-            <div class="filter-row">
-              <input type="search" id="searchInput" placeholder="Search title or caption">
-              <select id="filterStatus">
-                <option value="All">All Statuses</option>
-                <option value="Draft">Draft</option>
-                <option value="Scheduled">Scheduled</option>
-                <option value="Ready">Ready</option>
-                <option value="Posted">Posted</option>
-              </select>
-              <select id="filterPlatform">
-                <option value="All">All Platforms</option>
-                <option value="Instagram">Instagram</option>
-                <option value="Facebook">Facebook</option>
-                <option value="LinkedIn">LinkedIn</option>
-                <option value="TikTok">TikTok</option>
-                <option value="YouTube Shorts">YouTube Shorts</option>
-                <option value="X / Twitter">X / Twitter</option>
-                <option value="Pinterest">Pinterest</option>
-              </select>
-            </div>
-
-            <div class="queue-list" id="queueList"></div>
-          </section>
-
-          <section class="panel float-card edge-card" id="calendar" aria-label="Content Calendar">
-            <div class="panel-header">
-              <div>
-                <div class="panel-eyebrow">Calendar</div>
-                <h2>Next 14 Days</h2>
-                <p>A quick calendar view so the schedule feels clear before you post or approve.</p>
-              </div>
-            </div>
-
-            <div class="calendar-grid" id="calendarGrid"></div>
-          </section>
-        </div>
-
-        <aside>
-          <section class="panel float-card edge-card" id="creator" aria-label="AI Content Creator">
-            <div class="panel-header">
-              <div>
-                <div class="panel-eyebrow">AI Creator</div>
-                <h2>Caption Builder</h2>
-                <p>Free first version: smart template generator. Later, this can connect to Gemini, OpenAI, or another API.</p>
-              </div>
-            </div>
-
-            <div class="form-grid">
-              <div class="field">
-                <label for="aiBrand">Business / Brand</label>
-                <input type="text" id="aiBrand" placeholder="Example: Saionra, law firm, restaurant">
-              </div>
-
-              <div class="field">
-                <label for="aiGoal">Goal</label>
-                <select id="aiGoal">
-                  <option value="Get leads">Get leads</option>
-                  <option value="Drive traffic">Drive traffic</option>
-                  <option value="Increase engagement">Increase engagement</option>
-                  <option value="Promote offer">Promote offer</option>
-                  <option value="Educate audience">Educate audience</option>
-                  <option value="Announce update">Announce update</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label for="aiAudience">Target Audience</label>
-                <input type="text" id="aiAudience" placeholder="Example: business owners, parents, immigrants">
-              </div>
-
-              <div class="field">
-                <label for="aiTone">Tone</label>
-                <select id="aiTone">
-                  <option value="Professional and simple">Professional and simple</option>
-                  <option value="Warm and helpful">Warm and helpful</option>
-                  <option value="Premium and confident">Premium and confident</option>
-                  <option value="Direct and sales-focused">Direct and sales-focused</option>
-                  <option value="Educational and clear">Educational and clear</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label for="aiPlatform">Platform</label>
-                <select id="aiPlatform">
-                  <option value="Instagram">Instagram</option>
-                  <option value="Facebook">Facebook</option>
-                  <option value="LinkedIn">LinkedIn</option>
-                  <option value="TikTok">TikTok</option>
-                  <option value="YouTube Shorts">YouTube Shorts</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label for="aiOffer">Offer / CTA</label>
-                <input type="text" id="aiOffer" placeholder="Example: Book a free audit">
-              </div>
-
-              <div class="full-field">
-                <div class="creator-actions">
-                  <button class="btn btn-primary" id="generateCaptionButton" type="button">Generate Caption</button>
-                  <button class="btn" id="useGeneratedButton" type="button">Use in Post Form</button>
-                  <button class="btn" id="copyGeneratedButton" type="button">Copy</button>
+            <section class="panel" id="calendar" aria-label="Content Calendar">
+              <div class="panel-header">
+                <div>
+                  <div class="panel-eyebrow">Calendar</div>
+                  <h2>Next 14 Days</h2>
+                  <p>A simple view of upcoming posting slots and scheduled content.</p>
                 </div>
               </div>
 
-              <div class="full-field">
-                <div class="generated-box" id="generatedContent">Generated content will appear here.</div>
-              </div>
-            </div>
-          </section>
+              <div class="calendar-grid" id="calendarGrid"></div>
+            </section>
+          </div>
 
-          <section class="panel float-card edge-card" aria-label="Post Preview">
-            <div class="panel-header">
-              <div>
-                <div class="panel-eyebrow">Preview</div>
-                <h2>Post Preview</h2>
-                <p>Live preview based on the post form.</p>
+          <aside class="stack sticky-side">
+            <section class="panel" id="creator" aria-label="AI Content Creator">
+              <div class="panel-header">
+                <div>
+                  <div class="panel-eyebrow">AI Creator</div>
+                  <h2>Caption Builder</h2>
+                  <p>Template-based caption generation now. Gemini, OpenAI, or another API can connect later.</p>
+                </div>
               </div>
-            </div>
 
-            <article class="preview-card">
-              <div class="preview-top">
-                <div class="avatar-row">
-                  <div class="avatar" id="previewAvatar">S</div>
-                  <div>
-                    <span class="preview-brand" id="previewTitle">Untitled Post</span>
-                    <span class="preview-date" id="previewDate">No date selected</span>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="aiBrand">Business / Brand</label>
+                  <input type="text" id="aiBrand" placeholder="Example: Saionra, law firm, restaurant">
+                </div>
+
+                <div class="field">
+                  <label for="aiGoal">Goal</label>
+                  <select id="aiGoal">
+                    <option value="Get leads">Get leads</option>
+                    <option value="Drive traffic">Drive traffic</option>
+                    <option value="Increase engagement">Increase engagement</option>
+                    <option value="Promote offer">Promote offer</option>
+                    <option value="Educate audience">Educate audience</option>
+                    <option value="Announce update">Announce update</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="aiAudience">Target Audience</label>
+                  <input type="text" id="aiAudience" placeholder="Example: business owners, parents, immigrants">
+                </div>
+
+                <div class="field">
+                  <label for="aiTone">Tone</label>
+                  <select id="aiTone">
+                    <option value="Professional and simple">Professional and simple</option>
+                    <option value="Warm and helpful">Warm and helpful</option>
+                    <option value="Premium and confident">Premium and confident</option>
+                    <option value="Direct and sales-focused">Direct and sales-focused</option>
+                    <option value="Educational and clear">Educational and clear</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="aiPlatform">Platform</label>
+                  <select id="aiPlatform">
+                    <option value="Instagram">Instagram</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="LinkedIn">LinkedIn</option>
+                    <option value="TikTok">TikTok</option>
+                    <option value="YouTube Shorts">YouTube Shorts</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="aiOffer">Offer / CTA</label>
+                  <input type="text" id="aiOffer" placeholder="Example: Book a free audit">
+                </div>
+
+                <div class="full-field">
+                  <div class="creator-actions">
+                    <button class="btn btn-primary" id="generateCaptionButton" type="button">Generate Caption</button>
+                    <button class="btn" id="useGeneratedButton" type="button">Use in Form</button>
+                    <button class="btn" id="copyGeneratedButton" type="button">Copy</button>
                   </div>
                 </div>
-                <span class="chip" id="previewStatus">Draft</span>
+
+                <div class="full-field">
+                  <div class="generated-box" id="generatedContent">Generated content will appear here.</div>
+                </div>
               </div>
+            </section>
 
-              <div class="media-box" id="previewMedia">Media preview / file note</div>
-              <div class="preview-caption" id="previewCaption">Your caption preview will appear here.</div>
-            </article>
-          </section>
-
-          <section class="panel float-card edge-card" id="assistant" aria-label="Manual Posting Assistant">
-            <div class="panel-header">
-              <div>
-                <div class="panel-eyebrow">Assistant</div>
-                <h2>Manual Posting Assistant</h2>
-                <p>For platforms that are not connected yet, Saionra still prepares the post and guides the posting steps.</p>
-              </div>
-            </div>
-
-            <div class="assistant-grid">
-              <div class="assistant-step float-card edge-card">
-                <span>1</span>
+            <section class="panel" aria-label="Post Preview">
+              <div class="panel-header">
                 <div>
-                  <b>Open the ready post.</b>
-                  <p>Use the Ready filter and confirm caption, media note, CTA, and platform.</p>
+                  <div class="panel-eyebrow">Preview</div>
+                  <h2>Post Preview</h2>
+                  <p>Live preview based on the form.</p>
                 </div>
               </div>
 
-              <div class="assistant-step float-card edge-card">
-                <span>2</span>
+              <article class="preview-card">
+                <div class="preview-top">
+                  <div class="avatar-row">
+                    <div class="avatar" id="previewAvatar">S</div>
+                    <div>
+                      <span class="preview-brand" id="previewTitle">Untitled Post</span>
+                      <span class="preview-date" id="previewDate">No date selected</span>
+                    </div>
+                  </div>
+                  <span class="chip" id="previewStatus">Draft</span>
+                </div>
+
+                <div class="media-box" id="previewMedia">Media preview / file note</div>
+                <div class="preview-caption" id="previewCaption">Your caption preview will appear here.</div>
+              </article>
+            </section>
+
+            <section class="panel" id="assistant" aria-label="Manual Posting Assistant">
+              <div class="panel-header">
                 <div>
-                  <b>Copy caption and media note.</b>
-                  <p>Open the platform, upload the asset, paste the caption, and check the preview.</p>
+                  <div class="panel-eyebrow">Assistant</div>
+                  <h2>Manual Posting Steps</h2>
+                  <p>Use this while auto-posting is not connected yet.</p>
                 </div>
               </div>
 
-              <div class="assistant-step float-card edge-card">
-                <span>3</span>
-                <div>
-                  <b>Post or schedule manually.</b>
-                  <p>After posting, mark the item as Posted so reports and counts stay clean.</p>
+              <div class="assistant-grid">
+                <div class="assistant-step">
+                  <span>1</span>
+                  <div>
+                    <b>Review the ready post.</b>
+                    <p>Confirm caption, media note, CTA, schedule, and platform.</p>
+                  </div>
+                </div>
+
+                <div class="assistant-step">
+                  <span>2</span>
+                  <div>
+                    <b>Copy caption and media note.</b>
+                    <p>Open the platform, upload the asset, and paste the content.</p>
+                  </div>
+                </div>
+
+                <div class="assistant-step">
+                  <span>3</span>
+                  <div>
+                    <b>Mark it as posted.</b>
+                    <p>Update the post status so the queue and report counts stay clean.</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
-        </aside>
+            </section>
+          </aside>
+        </div>
       </div>
     </main>
   </div>
@@ -1304,6 +1389,8 @@
       statScheduled: document.getElementById("statScheduled"),
       statReadyToday: document.getElementById("statReadyToday"),
       statPosted: document.getElementById("statPosted"),
+      todayFocusTitle: document.getElementById("todayFocusTitle"),
+      todayFocusText: document.getElementById("todayFocusText"),
       previewAvatar: document.getElementById("previewAvatar"),
       previewTitle: document.getElementById("previewTitle"),
       previewDate: document.getElementById("previewDate"),
@@ -1322,6 +1409,7 @@
       copyGeneratedButton: document.getElementById("copyGeneratedButton"),
       exportCsvButton: document.getElementById("exportCsvButton"),
       jumpCreateButton: document.getElementById("jumpCreateButton"),
+      jumpQueueButton: document.getElementById("jumpQueueButton"),
       mobileMenuButton: document.getElementById("mobileMenuButton"),
       toast: document.getElementById("toast")
     };
@@ -1538,6 +1626,17 @@
       selectors.statScheduled.textContent = scheduled;
       selectors.statReadyToday.textContent = readyToday;
       selectors.statPosted.textContent = posted;
+
+      if (readyToday > 0) {
+        selectors.todayFocusTitle.textContent = `${readyToday} ready for today`;
+        selectors.todayFocusText.textContent = "Review today’s scheduled or ready posts before publishing them manually.";
+      } else if (scheduled > 0) {
+        selectors.todayFocusTitle.textContent = `${scheduled} scheduled post${scheduled === 1 ? "" : "s"}`;
+        selectors.todayFocusText.textContent = "Your upcoming content is organized. Check the calendar for posting dates.";
+      } else {
+        selectors.todayFocusTitle.textContent = "No urgent posts";
+        selectors.todayFocusText.textContent = "Posts scheduled for today will appear here after you save them.";
+      }
     }
 
     function renderQueue() {
@@ -1545,7 +1644,7 @@
 
       if (!posts.length) {
         selectors.queueList.innerHTML = `
-          <div class="empty-state edge-card">
+          <div class="empty-state">
             No posts found. Create your first post or change the filters.
           </div>
         `;
@@ -1559,7 +1658,7 @@
         const snippet = truncate(post.caption || post.mediaUrl || "No caption or media note yet.", 190);
 
         return `
-          <article class="post-card float-card edge-card" data-post-id="${escapeHtml(post.id)}">
+          <article class="post-card" data-post-id="${escapeHtml(post.id)}">
             <div class="post-card-top">
               <div>
                 <h3>${escapeHtml(post.title)}</h3>
@@ -1580,8 +1679,6 @@
           </article>
         `;
       }).join("");
-
-      refreshEdgeCards();
     }
 
     function renderCalendar() {
@@ -1600,17 +1697,16 @@
         const more = postsForDay.length > 3 ? `<span class="day-pill">+${postsForDay.length - 3} more</span>` : "";
 
         return `
-          <article class="day-card float-card edge-card">
+          <article class="day-card">
             <strong>${escapeHtml(dayName)}</strong>
             <span>${escapeHtml(dayDate)}</span>
-            ${pills || `<span class="day-pill">Open slot</span>`}
+            ${pills || `<span class="day-pill open">Open slot</span>`}
             ${more}
           </article>
         `;
       });
 
       selectors.calendarGrid.innerHTML = dayCards.join("");
-      refreshEdgeCards();
     }
 
     function updateLivePreview() {
@@ -1679,7 +1775,6 @@
         await navigator.clipboard.writeText(text);
         showToast("Copied to clipboard.");
       } catch (error) {
-        selectors.generatedContent.focus?.();
         showToast("Copy failed. You can select the text manually.");
       }
     }
@@ -1702,7 +1797,7 @@
       selectors.platform.value = selectors.aiPlatform.value;
       updateLivePreview();
       document.getElementById("create").scrollIntoView({ behavior: "smooth", block: "start" });
-      showToast("Generated caption added to the post form.");
+      showToast("Generated caption added to the form.");
     }
 
     function exportCsv() {
@@ -1751,24 +1846,6 @@
       link.remove();
       URL.revokeObjectURL(url);
       showToast("CSV exported.");
-    }
-
-    function refreshEdgeCards() {
-      const cards = document.querySelectorAll(".edge-card");
-
-      cards.forEach((card) => {
-        if (card.dataset.edgeReady === "true") return;
-        card.dataset.edgeReady = "true";
-
-        const updateEdgePosition = (event) => {
-          const rect = card.getBoundingClientRect();
-          card.style.setProperty("--edge-x", `${event.clientX - rect.left}px`);
-          card.style.setProperty("--edge-y", `${event.clientY - rect.top}px`);
-        };
-
-        card.addEventListener("pointermove", updateEdgePosition);
-        card.addEventListener("pointerenter", updateEdgePosition);
-      });
     }
 
     function bindEvents() {
@@ -1843,6 +1920,10 @@
         selectors.postTitle.focus();
       });
 
+      selectors.jumpQueueButton.addEventListener("click", () => {
+        document.getElementById("queue").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
       selectors.mobileMenuButton.addEventListener("click", () => {
         document.body.classList.toggle("sidebar-open");
       });
@@ -1872,7 +1953,6 @@
       bindEvents();
       updateLivePreview();
       renderAll();
-      refreshEdgeCards();
     }
 
     init();
