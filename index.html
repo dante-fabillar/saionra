@@ -559,23 +559,51 @@
       font-weight: 900;
     }
 
-    .process {
-      counter-reset: step;
-    }
-
     .process .card {
       position: relative;
+      min-height: 148px;
+      padding-right: 94px;
     }
 
-    .process .card::before {
-      counter-increment: step;
-      content: "0" counter(step);
+    .process-number {
       position: absolute;
       top: 22px;
       right: 24px;
-      color: rgba(215, 181, 109, 0.22);
-      font-weight: 900;
+      z-index: 3;
+      line-height: 1;
       font-size: 36px;
+      font-weight: 900;
+      letter-spacing: -1.4px;
+      color: transparent;
+      opacity: 0.44;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          78px circle at var(--number-x, 50%) var(--number-y, 50%),
+          #fff8d6 0%,
+          var(--gold-light) 24%,
+          rgba(215, 181, 109, 0.68) 48%,
+          rgba(215, 181, 109, 0.22) 75%
+        );
+      -webkit-background-clip: text;
+      background-clip: text;
+      transition:
+        opacity 0.28s ease,
+        filter 0.28s ease,
+        transform 0.28s ease;
+    }
+
+    .process .card:hover .process-number {
+      opacity: 0.72;
+      filter: drop-shadow(0 0 10px rgba(215, 181, 109, 0.22));
+    }
+
+    .process .card.number-hot .process-number {
+      opacity: 1;
+      transform: translateY(-1px) scale(1.03);
+      filter:
+        drop-shadow(0 0 10px rgba(240, 211, 138, 0.44))
+        drop-shadow(0 0 18px rgba(215, 181, 109, 0.22));
     }
 
     .contact-grid {
@@ -924,6 +952,17 @@
     }
 
     @media (max-width: 900px) {
+      .process .card {
+        min-height: 132px;
+        padding-right: 76px;
+      }
+
+      .process-number {
+        top: 20px;
+        right: 22px;
+        font-size: 32px;
+      }
+
       .hero,
       .grid,
       .pricing,
@@ -1236,16 +1275,19 @@
 
         <div class="grid">
           <div class="card soft-float corner-line">
+            <span class="process-number" aria-hidden="true">01</span>
             <h3>Map</h3>
             <p>Identify what feels slow, messy, manual, or hard to track in your current workflow.</p>
           </div>
 
           <div class="card soft-float corner-line">
+            <span class="process-number" aria-hidden="true">02</span>
             <h3>Organize</h3>
             <p>Turn your content, tasks, reports, and requests into a clearer structure.</p>
           </div>
 
           <div class="card soft-float corner-line">
+            <span class="process-number" aria-hidden="true">03</span>
             <h3>Execute</h3>
             <p>Create, approve, schedule, report, and improve the next cycle with less manual work.</p>
           </div>
@@ -1817,11 +1859,7 @@
     );
 
     portfolioHoverTargets.forEach((element) => {
-      element.classList.add("portfolio-float");
-
-      if (!element.closest(".process")) {
-        element.classList.add("portfolio-edge");
-      }
+      element.classList.add("portfolio-float", "portfolio-edge");
 
       const updateEdgePosition = (event) => {
         const rect = element.getBoundingClientRect();
@@ -1831,6 +1869,36 @@
 
       element.addEventListener("pointermove", updateEdgePosition);
       element.addEventListener("pointerenter", updateEdgePosition);
+    });
+
+    const processCards = document.querySelectorAll(".process .card");
+
+    processCards.forEach((card) => {
+      const processNumber = card.querySelector(".process-number");
+
+      if (!processNumber) {
+        return;
+      }
+
+      const updateProcessNumberGlow = (event) => {
+        const rect = processNumber.getBoundingClientRect();
+        const numberX = event.clientX - rect.left;
+        const numberY = event.clientY - rect.top;
+        const hotPadding = 18;
+        const isNearNumber =
+          numberX >= -hotPadding &&
+          numberX <= rect.width + hotPadding &&
+          numberY >= -hotPadding &&
+          numberY <= rect.height + hotPadding;
+
+        processNumber.style.setProperty("--number-x", `${numberX}px`);
+        processNumber.style.setProperty("--number-y", `${numberY}px`);
+        card.classList.toggle("number-hot", isNearNumber);
+      };
+
+      card.addEventListener("pointermove", updateProcessNumberGlow);
+      card.addEventListener("pointerenter", updateProcessNumberGlow);
+      card.addEventListener("pointerleave", () => card.classList.remove("number-hot"));
     });
 
   </script>
