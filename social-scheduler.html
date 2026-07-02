@@ -1221,9 +1221,12 @@
           <button class="nav-button active" type="button" data-page="dashboard">Dashboard <small>Live</small></button>
           <button class="nav-button" type="button" data-page="planner">Planner</button>
           <button class="nav-button" type="button" data-page="creator">AI Creator</button>
+          <button class="nav-button" type="button" data-page="strategy">Strategy Lab</button>
           <button class="nav-button" type="button" data-page="approvals">Approvals</button>
           <button class="nav-button" type="button" data-page="calendar">Calendar</button>
+          <button class="nav-button" type="button" data-page="posting">Posting Cockpit</button>
           <button class="nav-button" type="button" data-page="reports">Reports</button>
+          <button class="nav-button" type="button" data-page="ai-settings">AI Settings</button>
           <button class="nav-button" type="button" data-page="settings">Brand Settings</button>
         </nav>
       </div>
@@ -1234,7 +1237,7 @@
           <span class="nav-soon">Meta Auto-Posting <small>API</small></span>
           <span class="nav-soon">Team Login <small>Auth</small></span>
           <span class="nav-soon">Client Portal <small>Link</small></span>
-          <span class="nav-soon">Smart Reports <small>AI</small></span>
+          <span class="nav-soon">Paid AI Usage <small>Gate</small></span>
         </div>
       </div>
     </aside>
@@ -1467,6 +1470,27 @@
                 </article>
               </section>
 
+              <section class="panel compact-panel">
+                <div class="panel-header">
+                  <div>
+                    <div class="panel-eyebrow">Quality</div>
+                    <h2>Content quality check</h2>
+                    <p>Simple logic check before content moves to review, approval, or posting.</p>
+                  </div>
+                </div>
+                <div class="quality-box">
+                  <div class="quality-head">
+                    <div>
+                      <strong id="qualityScore">0%</strong>
+                      <span id="qualityLabel">Needs content</span>
+                    </div>
+                    <span class="chip neutral" id="qualityModeChip">Template logic</span>
+                  </div>
+                  <div class="quality-meter"><span id="qualityFill"></span></div>
+                  <div class="quality-list" id="qualityChecklist"></div>
+                </div>
+              </section>
+
               <section class="panel">
                 <div class="panel-header">
                   <div>
@@ -1575,6 +1599,114 @@
           </div>
         </section>
 
+
+        <section class="page" id="page-strategy" aria-label="Strategy Lab">
+          <div class="two-col-grid">
+            <section class="panel">
+              <div class="panel-header">
+                <div>
+                  <div class="panel-eyebrow">Strategy Lab</div>
+                  <h2>Campaign builder</h2>
+                  <p>Generate a balanced campaign plan using the saved brand, content pillars, platforms, and no-cost template logic.</p>
+                </div>
+              </div>
+
+              <form class="form-grid" id="campaignForm">
+                <div class="field">
+                  <label for="campaignName">Campaign Name</label>
+                  <input type="text" id="campaignName" placeholder="Example: July lead generation campaign">
+                </div>
+
+                <div class="field">
+                  <label for="campaignGoal">Campaign Goal</label>
+                  <select id="campaignGoal">
+                    <option value="Get leads">Get leads</option>
+                    <option value="Build trust">Build trust</option>
+                    <option value="Promote offer">Promote offer</option>
+                    <option value="Educate audience">Educate audience</option>
+                    <option value="Grow engagement">Grow engagement</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="campaignStartDate">Start Date</label>
+                  <input type="date" id="campaignStartDate">
+                </div>
+
+                <div class="field">
+                  <label for="campaignLength">Plan Length</label>
+                  <select id="campaignLength">
+                    <option value="7">7 days</option>
+                    <option value="14">14 days</option>
+                    <option value="30">30 days</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="campaignFrequency">Posting Frequency</label>
+                  <select id="campaignFrequency">
+                    <option value="3">3 posts/week</option>
+                    <option value="4">4 posts/week</option>
+                    <option value="5">5 posts/week</option>
+                    <option value="7">Daily</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="campaignDefaultStatus">Create As</label>
+                  <select id="campaignDefaultStatus">
+                    <option value="Idea">Ideas</option>
+                    <option value="Draft">Drafts</option>
+                    <option value="Needs Review">Needs Review</option>
+                  </select>
+                </div>
+
+                <div class="full-field">
+                  <div class="form-actions">
+                    <div class="chip-row">
+                      <span class="chip">No paid API used</span>
+                      <span class="chip neutral">Uses Brand Brain</span>
+                    </div>
+                    <div class="post-actions">
+                      <button class="btn" id="previewCampaignButton" type="button">Preview Campaign</button>
+                      <button class="btn btn-primary" id="createCampaignButton" type="button">Create Drafts</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <div class="campaign-result" id="campaignResult">Campaign preview will appear here.</div>
+            </section>
+
+            <aside>
+              <section class="panel">
+                <div class="panel-header">
+                  <div>
+                    <div class="panel-eyebrow">Anti-Repetition</div>
+                    <h2>Strategy checks</h2>
+                    <p>Saionra checks if the account is repeating the same pillar, CTA, or content angle too often.</p>
+                  </div>
+                </div>
+                <div class="strategy-audit-list" id="strategyAuditList"></div>
+              </section>
+
+              <section class="panel">
+                <div class="panel-header">
+                  <div>
+                    <div class="panel-eyebrow">Why This Post?</div>
+                    <h2>Built-in strategy explanation</h2>
+                  </div>
+                </div>
+                <div class="strategy-grid">
+                  <div class="strategy-card"><strong>Purpose</strong><p>Every post should have a clear job: educate, prove, offer, engage, or report.</p></div>
+                  <div class="strategy-card"><strong>Funnel Stage</strong><p>Awareness posts build trust. Offer posts should not dominate the full calendar.</p></div>
+                  <div class="strategy-card"><strong>Next Step</strong><p>Use the CTA and approval flow so content moves without messy back-and-forth.</p></div>
+                </div>
+              </section>
+            </aside>
+          </div>
+        </section>
+
         <section class="page" id="page-approvals" aria-label="Approvals">
           <div class="two-col-grid">
             <section class="panel">
@@ -1643,6 +1775,56 @@
           </section>
         </section>
 
+
+        <section class="page" id="page-posting" aria-label="Posting Cockpit">
+          <div class="posting-grid">
+            <section class="panel">
+              <div class="panel-header">
+                <div>
+                  <div class="panel-eyebrow">Posting Cockpit</div>
+                  <h2>Manual posting command center</h2>
+                  <p>Use this until auto-posting APIs are connected. It keeps the client workflow useful without paid platform API costs.</p>
+                </div>
+              </div>
+              <div class="queue-list" id="postingCockpitList"></div>
+            </section>
+
+            <aside>
+              <section class="panel">
+                <div class="panel-header">
+                  <div>
+                    <div class="panel-eyebrow">Manual Mode</div>
+                    <h2>Safe posting steps</h2>
+                  </div>
+                </div>
+                <div class="quick-list">
+                  <div class="quick-item"><strong>1. Filter ready content</strong><p>Only use Approved, Scheduled, Ready, or due-today posts.</p></div>
+                  <div class="quick-item"><strong>2. Open asset</strong><p>Use Canva, Drive, or the media note before publishing.</p></div>
+                  <div class="quick-item"><strong>3. Copy caption</strong><p>Paste caption, check formatting, then post or schedule.</p></div>
+                  <div class="quick-item"><strong>4. Mark posted</strong><p>Paste live URL later and add simple metrics in Reports.</p></div>
+                </div>
+              </section>
+
+              <section class="panel">
+                <div class="panel-header">
+                  <div>
+                    <div class="panel-eyebrow">Platform Links</div>
+                    <h2>Quick open</h2>
+                    <p>These links open the common posting areas. Exact screens may vary by account.</p>
+                  </div>
+                </div>
+                <div class="mini-actions">
+                  <button class="btn btn-sm" type="button" data-open-platform="Facebook">Facebook</button>
+                  <button class="btn btn-sm" type="button" data-open-platform="Instagram">Instagram</button>
+                  <button class="btn btn-sm" type="button" data-open-platform="LinkedIn">LinkedIn</button>
+                  <button class="btn btn-sm" type="button" data-open-platform="TikTok">TikTok</button>
+                  <button class="btn btn-sm" type="button" data-open-platform="YouTube Shorts">YouTube</button>
+                </div>
+              </section>
+            </aside>
+          </div>
+        </section>
+
         <section class="page" id="page-reports" aria-label="Reports">
           <div class="two-col-grid">
             <section class="panel">
@@ -1665,6 +1847,89 @@
                   </div>
                 </div>
                 <div class="quick-list" id="insightList"></div>
+              </section>
+            </aside>
+          </div>
+        </section>
+
+
+        <section class="page" id="page-ai-settings" aria-label="AI Settings">
+          <div class="two-col-grid">
+            <section class="panel">
+              <div class="panel-header">
+                <div>
+                  <div class="panel-eyebrow">AI Settings</div>
+                  <h2>Model selector and cost control</h2>
+                  <p>Choose the AI mode without exposing API keys in the browser. Paid AI should only activate after the client has paid.</p>
+                </div>
+              </div>
+
+              <form class="form-grid" id="aiSettingsForm">
+                <div class="field">
+                  <label for="aiMode">AI Mode</label>
+                  <select id="aiMode">
+                    <option value="template">Template AI — no API cost</option>
+                    <option value="free-router">Free Tier Router — backend needed</option>
+                    <option value="byo-key">Bring Your Own Key — client pays usage</option>
+                    <option value="managed-paid">Saionra Managed AI — locked until paid</option>
+                    <option value="off">No AI</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="aiProvider">Preferred Provider</label>
+                  <select id="aiProvider">
+                    <option value="template">Saionra Template AI</option>
+                    <option value="gemini">Gemini Free Tier</option>
+                    <option value="groq">Groq Free/Fast</option>
+                    <option value="openrouter">OpenRouter Multi-Model</option>
+                    <option value="mistral">Mistral</option>
+                    <option value="huggingface">Hugging Face</option>
+                    <option value="openai">OpenAI / ChatGPT Models</option>
+                    <option value="claude">Claude Models</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="aiSensitivity">Data Safety Mode</label>
+                  <select id="aiSensitivity">
+                    <option value="standard">Standard content</option>
+                    <option value="client-safe">Client-safe / private data</option>
+                    <option value="demo">Demo only / no sensitive data</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="aiMonthlyLimit">Monthly AI Credit Limit</label>
+                  <input type="number" min="0" id="aiMonthlyLimit" placeholder="Example: 1000">
+                </div>
+
+                <div class="full-field">
+                  <div class="safe-note">
+                    API keys should stay in a backend route or Vercel environment variable, not inside this HTML file. This screen only saves the preferred mode and provider for the workspace.
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <div class="chip-row">
+                    <span class="chip" id="aiActiveModeChip">Template AI active</span>
+                    <span class="chip neutral" id="aiCostChip">No cost mode</span>
+                  </div>
+                  <button class="btn btn-primary" type="submit">Save AI Settings</button>
+                </div>
+              </form>
+            </section>
+
+            <aside>
+              <section class="panel">
+                <div class="panel-header">
+                  <div>
+                    <div class="panel-eyebrow">Models</div>
+                    <h2>Provider status</h2>
+                    <p>Clear badges help users understand what is free, locked, paid, or needs backend setup.</p>
+                  </div>
+                </div>
+                <div class="model-grid" id="aiModelCards"></div>
               </section>
             </aside>
           </div>
@@ -1774,6 +2039,7 @@
     const POSTS_FALLBACK_KEY = "saionra_social_posts_v1";
     const WORKSPACE_KEY = "saionra_social_workspace_v2";
     const METRICS_KEY = "saionra_social_metrics_v2";
+    const AI_SETTINGS_KEY = "saionra_social_ai_settings_v3";
 
     const defaultWorkspace = {
       name: "Saionra",
@@ -1788,6 +2054,56 @@
     };
 
     const statuses = ["Idea", "Draft", "Needs Review", "Changes Requested", "Approved", "Scheduled", "Ready", "Posted", "Reported"];
+
+    const defaultAiSettings = {
+      mode: "template",
+      provider: "template",
+      sensitivity: "standard",
+      monthlyLimit: 0
+    };
+
+    const aiProviders = {
+      template: {
+        name: "Saionra Template AI",
+        description: "No API calls. Uses built-in content logic, Brand Brain, pillars, and campaign templates.",
+        badges: ["No API Cost", "Active", "Safe Demo"]
+      },
+      gemini: {
+        name: "Gemini Free Tier",
+        description: "Good first free/low-cost route when connected through a secure backend.",
+        badges: ["Free Tier", "Backend Needed", "Rate Limited"]
+      },
+      groq: {
+        name: "Groq Fast Free",
+        description: "Fast free-start option for simple rewrites and captions when backend routing is connected.",
+        badges: ["Free Limited", "Fast", "Backend Needed"]
+      },
+      openrouter: {
+        name: "OpenRouter Multi-Model",
+        description: "Can route across free and paid models later from one backend endpoint.",
+        badges: ["Free + Paid", "Router", "Backend Needed"]
+      },
+      mistral: {
+        name: "Mistral",
+        description: "Open model option for captions, summaries, and rewrites when API routing is connected.",
+        badges: ["Free/Paid", "Backend Needed"]
+      },
+      huggingface: {
+        name: "Hugging Face",
+        description: "Useful for testing open-source models, experiments, and fallback ideas.",
+        badges: ["Credits", "Experimental", "Backend Needed"]
+      },
+      openai: {
+        name: "OpenAI / ChatGPT Models",
+        description: "Premium quality option. Use BYO key or Saionra Managed AI only after payment.",
+        badges: ["Paid API", "BYO Key", "Client-Safe"]
+      },
+      claude: {
+        name: "Claude Models",
+        description: "Premium writing and reasoning option. Use BYO key or paid Saionra plan only.",
+        badges: ["Paid API", "BYO Key", "Premium"]
+      }
+    };
 
     const statusConfig = {
       Idea: { className: "neutral" },
@@ -1805,6 +2121,7 @@
       posts: [],
       metrics: {},
       workspace: { ...defaultWorkspace },
+      aiSettings: { ...defaultAiSettings },
       editingId: null,
       currentPage: "dashboard",
       calendarCursor: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
@@ -1830,6 +2147,10 @@
         title: "AI Creator",
         subtitle: "Generate brand-aware captions and content ideas based on your saved workspace setup."
       },
+      strategy: {
+        title: "Strategy Lab",
+        subtitle: "Build campaign drafts, check repetition, and explain the purpose behind each post."
+      },
       approvals: {
         title: "Approvals",
         subtitle: "Review content that needs client or manager approval before scheduling."
@@ -1838,9 +2159,17 @@
         title: "Calendar",
         subtitle: "Use a real monthly calendar with previous, next, today, and selected-day post review."
       },
+      posting: {
+        title: "Posting Cockpit",
+        subtitle: "Prepare ready posts for manual publishing without API costs or messy switching."
+      },
       reports: {
         title: "Reports",
         subtitle: "Track simple post results and prepare cleaner weekly or monthly reports."
+      },
+      "ai-settings": {
+        title: "AI Settings",
+        subtitle: "Choose AI mode, provider, safety level, and cost control before real API integration."
       },
       settings: {
         title: "Brand Settings",
@@ -1919,6 +2248,31 @@
       useGeneratedButton: document.getElementById("useGeneratedButton"),
       copyGeneratedButton: document.getElementById("copyGeneratedButton"),
       brandBrainList: document.getElementById("brandBrainList"),
+      qualityScore: document.getElementById("qualityScore"),
+      qualityLabel: document.getElementById("qualityLabel"),
+      qualityFill: document.getElementById("qualityFill"),
+      qualityChecklist: document.getElementById("qualityChecklist"),
+      qualityModeChip: document.getElementById("qualityModeChip"),
+      campaignForm: document.getElementById("campaignForm"),
+      campaignName: document.getElementById("campaignName"),
+      campaignGoal: document.getElementById("campaignGoal"),
+      campaignStartDate: document.getElementById("campaignStartDate"),
+      campaignLength: document.getElementById("campaignLength"),
+      campaignFrequency: document.getElementById("campaignFrequency"),
+      campaignDefaultStatus: document.getElementById("campaignDefaultStatus"),
+      previewCampaignButton: document.getElementById("previewCampaignButton"),
+      createCampaignButton: document.getElementById("createCampaignButton"),
+      campaignResult: document.getElementById("campaignResult"),
+      strategyAuditList: document.getElementById("strategyAuditList"),
+      postingCockpitList: document.getElementById("postingCockpitList"),
+      aiSettingsForm: document.getElementById("aiSettingsForm"),
+      aiMode: document.getElementById("aiMode"),
+      aiProvider: document.getElementById("aiProvider"),
+      aiSensitivity: document.getElementById("aiSensitivity"),
+      aiMonthlyLimit: document.getElementById("aiMonthlyLimit"),
+      aiActiveModeChip: document.getElementById("aiActiveModeChip"),
+      aiCostChip: document.getElementById("aiCostChip"),
+      aiModelCards: document.getElementById("aiModelCards"),
 
       workspaceForm: document.getElementById("workspaceForm"),
       workspaceName: document.getElementById("workspaceName"),
@@ -2000,10 +2354,20 @@
       };
     }
 
+    function readAiSettings() {
+      const saved = readJson(AI_SETTINGS_KEY, {});
+      return {
+        ...defaultAiSettings,
+        ...saved,
+        monthlyLimit: Number(saved.monthlyLimit || 0)
+      };
+    }
+
     function saveAll() {
       saveJson(POSTS_KEY, state.posts);
       saveJson(METRICS_KEY, state.metrics);
       saveJson(WORKSPACE_KEY, state.workspace);
+      saveJson(AI_SETTINGS_KEY, state.aiSettings);
     }
 
     function showToast(message) {
@@ -2093,6 +2457,76 @@
     function getStatusChip(status) {
       const config = statusConfig[status] || statusConfig.Idea;
       return `<span class="chip ${config.className}">${escapeHtml(status || "Idea")}</span>`;
+    }
+
+    function getAiModeLabel(mode) {
+      const labels = {
+        template: "Template AI",
+        "free-router": "Free Tier Router",
+        "byo-key": "Bring Your Own Key",
+        "managed-paid": "Managed AI Locked",
+        off: "AI Off"
+      };
+      return labels[mode] || "Template AI";
+    }
+
+    function getQualityAnalysis(input = {}) {
+      const title = input.title ?? selectors.postTitle.value.trim();
+      const platform = input.platform ?? selectors.platform.value;
+      const pillar = input.pillar ?? selectors.contentPillar.value;
+      const status = input.status ?? selectors.status.value;
+      const caption = input.caption ?? selectors.caption.value.trim();
+      const mediaUrl = input.mediaUrl ?? selectors.mediaUrl.value.trim();
+      const scheduleDateTime = input.scheduleDateTime ?? selectors.scheduleDateTime.value;
+      const cta = state.workspace.cta || "";
+      const checks = [];
+      let score = 0;
+
+      function add(pass, label, points, warning = false) {
+        checks.push({ pass, label, warning: warning && !pass });
+        if (pass) score += points;
+      }
+
+      add(Boolean(title), "Clear post title", 10, true);
+      add(Boolean(platform), "Platform selected", 8, true);
+      add(Boolean(pillar), "Content pillar selected", 10, true);
+      add(caption.length >= 80 || status === "Idea", "Caption has enough substance for review", 16, true);
+      add(caption.length <= 1400, "Caption length is easy to read", 10, true);
+      add(Boolean(mediaUrl) || ["Text Post", "Link Post"].includes(selectors.postType.value), "Asset or media note is present", 12, true);
+      add(Boolean(scheduleDateTime) || ["Idea", "Draft", "Needs Review", "Changes Requested"].includes(status), "Schedule is set when needed", 10, true);
+      add(!cta || caption.toLowerCase().includes(cta.toLowerCase().split(" ")[0]) || ["Idea", "Draft"].includes(status), "CTA is aligned with Brand Settings", 10, true);
+
+      const recentSamePillar = state.posts.filter((post) => post.pillar === pillar).length;
+      add(recentSamePillar < Math.max(4, Math.ceil(state.posts.length * 0.55)), "Pillar is not overused in the current queue", 12, true);
+      add(!findSimilarHook(caption), "Opening line is not repeated from another saved post", 12, true);
+
+      score = Math.min(100, score);
+      const label = score >= 85 ? "Strong" : score >= 70 ? "Good" : score >= 50 ? "Needs review" : "Needs work";
+      return { score, label, checks };
+    }
+
+    function findSimilarHook(caption) {
+      const firstLine = String(caption || "").split("\n").find(Boolean) || "";
+      const normalized = firstLine.toLowerCase().replace(/[^a-z0-9 ]/g, "").trim();
+      if (normalized.length < 18) return false;
+      return state.posts.some((post) => {
+        const other = String(post.caption || "").split("\n").find(Boolean) || "";
+        const otherNormalized = other.toLowerCase().replace(/[^a-z0-9 ]/g, "").trim();
+        return otherNormalized && otherNormalized === normalized;
+      });
+    }
+
+    function getPlatformPostUrl(platform) {
+      const links = {
+        Facebook: "https://business.facebook.com/latest/composer",
+        Instagram: "https://business.facebook.com/latest/composer",
+        LinkedIn: "https://www.linkedin.com/feed/",
+        TikTok: "https://www.tiktok.com/upload",
+        "YouTube Shorts": "https://studio.youtube.com/",
+        "X / Twitter": "https://x.com/compose/post",
+        Pinterest: "https://www.pinterest.com/pin-builder/"
+      };
+      return links[platform] || "https://business.facebook.com/latest/composer";
     }
 
     function getPostFromForm() {
@@ -2270,6 +2704,131 @@
         <div class="quick-item"><strong>Default CTA</strong><p>${escapeHtml(state.workspace.cta)}</p></div>
         <div class="quick-item"><strong>Voice</strong><p>${escapeHtml(state.workspace.voice)}</p></div>
       `;
+    }
+
+    function renderQualityPanel() {
+      if (!selectors.qualityScore) return;
+      const analysis = getQualityAnalysis();
+      selectors.qualityScore.textContent = `${analysis.score}%`;
+      selectors.qualityLabel.textContent = analysis.label;
+      selectors.qualityFill.style.width = `${analysis.score}%`;
+      selectors.qualityModeChip.textContent = getAiModeLabel(state.aiSettings.mode);
+      selectors.qualityChecklist.innerHTML = analysis.checks.map((item) => {
+        const className = item.pass ? "good" : item.warning ? "warning" : "";
+        const mark = item.pass ? "✓" : "!";
+        return `<div class="quality-item ${className}"><span>${mark}</span><p>${escapeHtml(item.label)}</p></div>`;
+      }).join("");
+    }
+
+    function renderStrategyAudit() {
+      if (!selectors.strategyAuditList) return;
+      const total = state.posts.length;
+      if (!total) {
+        selectors.strategyAuditList.innerHTML = `
+          <div class="strategy-item"><span>1</span><p>No content yet. Create a campaign or add posts in Planner.</p></div>
+          <div class="strategy-item"><span>2</span><p>Use Brand Settings first so the strategy checks become more useful.</p></div>
+        `;
+        return;
+      }
+
+      const pillarCounts = state.workspace.pillars.map((pillar) => ({
+        pillar,
+        count: state.posts.filter((post) => post.pillar === pillar).length
+      })).sort((a, b) => b.count - a.count);
+      const topPillar = pillarCounts[0];
+      const offerCount = state.posts.filter((post) => /offer|cta|promo|sale/i.test(post.pillar || "")).length;
+      const reviewCount = state.posts.filter((post) => ["Needs Review", "Changes Requested"].includes(post.status)).length;
+      const unscheduledApproved = state.posts.filter((post) => ["Approved", "Scheduled", "Ready"].includes(post.status) && !post.scheduleDateTime).length;
+      const duplicateHooks = state.posts.filter((post) => findSimilarHook(post.caption)).length;
+
+      const items = [
+        {
+          good: topPillar.count <= Math.ceil(total * 0.55),
+          text: topPillar.count > Math.ceil(total * 0.55)
+            ? `${topPillar.pillar} is used too often. Add proof, FAQ, authority, or problem/solution posts.`
+            : `Content balance looks okay. Top pillar: ${topPillar.pillar} (${topPillar.count}/${total}).`
+        },
+        {
+          good: offerCount <= Math.ceil(total * 0.35),
+          text: offerCount > Math.ceil(total * 0.35)
+            ? "Offer/CTA content is heavy. Add more education and proof before selling again."
+            : "Offer posts are not dominating the calendar."
+        },
+        {
+          good: reviewCount <= 3,
+          text: reviewCount > 3
+            ? `${reviewCount} items need review or changes. Clear approvals before adding more posts.`
+            : "Approval queue is manageable."
+        },
+        {
+          good: unscheduledApproved === 0,
+          text: unscheduledApproved
+            ? `${unscheduledApproved} approved/ready posts do not have a schedule yet.`
+            : "Approved content has scheduling discipline."
+        },
+        {
+          good: duplicateHooks === 0,
+          text: duplicateHooks
+            ? "Some posts may repeat the same opening hook. Rewrite the first line before approval."
+            : "No obvious repeated hooks detected."
+        }
+      ];
+
+      selectors.strategyAuditList.innerHTML = items.map((item, index) => `
+        <div class="strategy-item ${item.good ? "good" : "warning"}"><span>${item.good ? "✓" : "!"}</span><p>${escapeHtml(item.text)}</p></div>
+      `).join("");
+    }
+
+    function renderAiSettings() {
+      if (!selectors.aiSettingsForm) return;
+      selectors.aiMode.value = state.aiSettings.mode || "template";
+      selectors.aiProvider.value = state.aiSettings.provider || "template";
+      selectors.aiSensitivity.value = state.aiSettings.sensitivity || "standard";
+      selectors.aiMonthlyLimit.value = state.aiSettings.monthlyLimit || "";
+
+      const modeLabel = getAiModeLabel(state.aiSettings.mode);
+      selectors.aiActiveModeChip.textContent = `${modeLabel} active`;
+      const costLabel = state.aiSettings.mode === "template" || state.aiSettings.mode === "off"
+        ? "No cost mode"
+        : state.aiSettings.mode === "managed-paid"
+          ? "Locked until paid"
+          : "Backend required";
+      selectors.aiCostChip.textContent = costLabel;
+
+      selectors.aiModelCards.innerHTML = Object.entries(aiProviders).map(([key, provider]) => {
+        const active = key === state.aiSettings.provider;
+        const locked = ["openai", "claude"].includes(key) || state.aiSettings.mode === "managed-paid";
+        const badges = provider.badges.map((badge) => {
+          const lower = badge.toLowerCase();
+          const cls = lower.includes("free") || lower.includes("active") ? "free" : lower.includes("paid") || lower.includes("client") || lower.includes("byo") ? "paid" : lower.includes("locked") || lower.includes("backend") ? "locked" : "";
+          return `<span class="model-badge ${cls}">${escapeHtml(badge)}</span>`;
+        }).join("");
+        return `
+          <article class="model-card ${active ? "active" : ""} ${locked ? "locked" : ""}">
+            <div class="model-card-header">
+              <div>
+                <strong>${escapeHtml(provider.name)}</strong>
+                <p>${escapeHtml(provider.description)}</p>
+              </div>
+              ${active ? `<span class="chip">Selected</span>` : ""}
+            </div>
+            <div class="model-badges">${badges}</div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function saveAiSettingsFromForm() {
+      state.aiSettings = {
+        mode: selectors.aiMode.value,
+        provider: selectors.aiProvider.value,
+        sensitivity: selectors.aiSensitivity.value,
+        monthlyLimit: Number(selectors.aiMonthlyLimit.value || 0)
+      };
+      saveAll();
+      renderAiSettings();
+      renderQualityPanel();
+      showToast("AI settings saved. No API key was stored in this HTML.");
     }
 
     function renderStats() {
@@ -2493,6 +3052,46 @@
       `).join("");
     }
 
+    function renderPostingCockpit() {
+      if (!selectors.postingCockpitList) return;
+      const actionable = state.posts
+        .filter((post) => ["Approved", "Scheduled", "Ready"].includes(post.status) || isToday(post.scheduleDateTime))
+        .sort((a, b) => {
+          const aTime = a.scheduleDateTime ? new Date(a.scheduleDateTime).getTime() : Number.MAX_SAFE_INTEGER;
+          const bTime = b.scheduleDateTime ? new Date(b.scheduleDateTime).getTime() : Number.MAX_SAFE_INTEGER;
+          return aTime - bTime;
+        });
+
+      if (!actionable.length) {
+        selectors.postingCockpitList.innerHTML = `<div class="empty-state">No ready posts yet. Approve or schedule a post first.</div>`;
+        return;
+      }
+
+      selectors.postingCockpitList.innerHTML = actionable.map((post) => `
+        <article class="cockpit-card" data-post-id="${escapeHtml(post.id)}">
+          <div class="cockpit-card-header">
+            <div>
+              <strong>${escapeHtml(post.title)}</strong>
+              <p>${escapeHtml(post.platform)} • ${escapeHtml(post.pillar)} • ${escapeHtml(formatDateTime(post.scheduleDateTime))}</p>
+            </div>
+            ${getStatusChip(post.status)}
+          </div>
+          <div class="cockpit-meta">
+            <span class="chip neutral">${escapeHtml(post.type || "Post")}</span>
+            <span class="chip">${post.mediaUrl ? "Asset ready" : "Asset missing"}</span>
+            <span class="chip neutral">${post.liveUrl ? "Live URL added" : "No live URL"}</span>
+          </div>
+          <div class="copy-box">${escapeHtml(truncate(post.caption || "No caption yet.", 360))}</div>
+          <div class="mini-actions">
+            <button class="btn btn-sm" data-post-action="copy" data-post-id="${escapeHtml(post.id)}" type="button">Copy Caption</button>
+            <button class="btn btn-sm" data-post-action="edit" data-post-id="${escapeHtml(post.id)}" type="button">Open</button>
+            <button class="btn btn-sm" data-post-action="posted" data-post-id="${escapeHtml(post.id)}" type="button">Mark Posted</button>
+            <button class="btn btn-sm" data-open-platform="${escapeHtml(post.platform)}" type="button">Open Platform</button>
+          </div>
+        </article>
+      `).join("");
+    }
+
     function renderReports() {
       const posted = state.posts.filter((post) => ["Posted", "Reported"].includes(post.status));
       if (!posted.length) {
@@ -2576,6 +3175,80 @@
       selectors.previewCaption.textContent = caption;
       selectors.scheduleHint.textContent = selectors.scheduleDateTime.value ? schedule : "No schedule selected";
       selectors.previewPlatformChip.textContent = platform;
+      renderQualityPanel();
+    }
+
+    function buildCampaignPosts(create = false) {
+      const name = selectors.campaignName.value.trim() || `${state.workspace.name} Content Campaign`;
+      const goal = selectors.campaignGoal.value;
+      const length = Number(selectors.campaignLength.value || 14);
+      const frequency = Number(selectors.campaignFrequency.value || 4);
+      const status = selectors.campaignDefaultStatus.value || "Idea";
+      const start = selectors.campaignStartDate.value ? new Date(selectors.campaignStartDate.value + "T09:00") : new Date();
+      start.setHours(9, 0, 0, 0);
+
+      const totalPosts = Math.max(1, Math.round((length / 7) * frequency));
+      const pillars = state.workspace.pillars.length ? state.workspace.pillars : defaultWorkspace.pillars;
+      const platforms = state.workspace.platforms.length ? state.workspace.platforms : defaultWorkspace.platforms;
+      const spacing = Math.max(1, Math.floor(length / totalPosts));
+      const templates = {
+        Educational: "Teach one clear idea that helps the audience understand the problem.",
+        "Proof / Case Study": "Show proof, a result, a mini case study, or before/after workflow.",
+        "Offer / CTA": "Connect the problem to the offer with one simple next step.",
+        "Behind the Scenes": "Show the process, setup, checklist, or work behind the result.",
+        FAQ: "Answer one common buyer question in a simple way.",
+        Authority: "Explain a principle or expert viewpoint that builds trust.",
+        "Problem / Solution": "Name a pain point and show the easier fix."
+      };
+
+      const posts = Array.from({ length: totalPosts }, (_, index) => {
+        const pillar = pillars[index % pillars.length];
+        const platform = platforms[index % platforms.length];
+        const date = new Date(start);
+        date.setDate(start.getDate() + index * spacing);
+        const iso = new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+        const angle = templates[pillar] || `Create a useful post connected to ${state.workspace.offer}.`;
+        return {
+          id: createId(),
+          title: `${name}: ${pillar}`,
+          platform,
+          pillar,
+          type: platform.includes("TikTok") || platform.includes("Shorts") ? "Short Video / Reel" : "Single Image",
+          status,
+          scheduleDateTime: iso,
+          mediaUrl: "",
+          liveUrl: "",
+          caption: status === "Idea" ? "" : `${angle}
+
+Audience: ${state.workspace.audience}.
+Goal: ${goal}.
+CTA: ${state.workspace.cta}.`,
+          internalNotes: `Campaign: ${name}
+Purpose: ${goal}
+Why this post: ${angle}`,
+          approvalNote: "",
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        };
+      });
+
+      const preview = posts.map((post, index) => `${index + 1}. ${post.scheduleDateTime.slice(0, 10)} — ${post.platform} — ${post.pillar}
+   ${post.title}
+   Why: ${post.internalNotes.split("Why this post: ")[1]}`).join("\n\n");
+      selectors.campaignResult.textContent = `${name}
+Goal: ${goal}
+Posts: ${posts.length}
+
+${preview}`;
+
+      if (create) {
+        state.posts = [...posts, ...state.posts];
+        saveAll();
+        renderAll();
+        showToast(`${posts.length} campaign items created.`);
+      } else {
+        showToast("Campaign preview ready.");
+      }
     }
 
     function generateCaption() {
@@ -2589,6 +3262,15 @@
       const tone = selectors.aiTone.value;
       const angle = selectors.aiAngle.value.trim() || "make the next step easier";
       const length = selectors.aiLength.value;
+
+      if (state.aiSettings.mode === "off") {
+        showToast("AI is turned off in AI Settings.");
+        return;
+      }
+
+      const modeNote = state.aiSettings.mode === "template"
+        ? "Generated with Saionra Template AI. No paid API was used."
+        : `${getAiModeLabel(state.aiSettings.mode)} selected. Backend routing is required before real external AI runs.`;
 
       const hooks = {
         "Get leads": `If ${audience} are interested but not taking action yet, the next step may need to feel clearer and easier.`,
@@ -2613,7 +3295,9 @@
         "YouTube Shorts": "Keep the caption short and connected to the video hook."
       };
 
-      const caption = `${hooks[goal] || hooks["Get leads"]}\n\n${bodyByLength[length]}\n\nContent pillar: ${pillar}.\nTone: ${tone}.\n\nCTA: ${cta}.\n\nPosting note for ${platform}: ${platformNote[platform] || "Keep the copy clear and focused."}\n\n#Saionra #ContentWorkflow #BusinessAutomation #SocialMediaManagement`;
+      const caption = `${hooks[goal] || hooks["Get leads"]}\n\n${bodyByLength[length]}\n\nContent pillar: ${pillar}.\nTone: ${tone}.\n\nCTA: ${cta}.\n\nPosting note for ${platform}: ${platformNote[platform] || "Keep the copy clear and focused."}\n\n#Saionra #ContentWorkflow #BusinessAutomation #SocialMediaManagement
+
+AI mode note: ${modeNote}`;
 
       selectors.generatedContent.textContent = caption;
       showToast("Caption generated.");
@@ -2912,6 +3596,31 @@
         renderCalendar();
       });
 
+      if (selectors.previewCampaignButton) {
+        selectors.previewCampaignButton.addEventListener("click", () => buildCampaignPosts(false));
+      }
+
+      if (selectors.createCampaignButton) {
+        selectors.createCampaignButton.addEventListener("click", () => buildCampaignPosts(true));
+      }
+
+      if (selectors.aiSettingsForm) {
+        selectors.aiSettingsForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          saveAiSettingsFromForm();
+        });
+
+        [selectors.aiMode, selectors.aiProvider, selectors.aiSensitivity, selectors.aiMonthlyLimit].forEach((field) => {
+          field.addEventListener("change", saveAiSettingsFromForm);
+        });
+      }
+
+      document.body.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-open-platform]");
+        if (!button) return;
+        window.open(getPlatformPostUrl(button.dataset.openPlatform), "_blank", "noopener,noreferrer");
+      });
+
       selectors.workspaceForm.addEventListener("submit", (event) => {
         event.preventDefault();
         saveWorkspaceFromForm();
@@ -2935,7 +3644,10 @@
       renderQueue();
       renderApprovals();
       renderCalendar();
+      renderPostingCockpit();
       renderReports();
+      renderStrategyAudit();
+      renderAiSettings();
       updateLivePreview();
     }
 
@@ -2943,6 +3655,7 @@
       state.posts = readPosts();
       state.metrics = readJson(METRICS_KEY, {});
       state.workspace = readWorkspace();
+      state.aiSettings = readAiSettings();
       renderOptions();
       renderWorkspace();
       bindEvents();
