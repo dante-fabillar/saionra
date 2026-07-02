@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Saionra Social Workspace</title>
-  <meta name="description" content="Saionra Social Workspace helps small teams plan, create, approve, schedule, and report social media content from one calm AI-powered dashboard." />
+  <title>Saionra Social Scheduler</title>
+  <meta name="description" content="Saionra Social Scheduler helps teams plan, create, approve, schedule, and report content from one smart workspace." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -959,6 +959,258 @@
       font-size: 12px;
     }
 
+    .quality-box {
+      display: grid;
+      gap: 14px;
+    }
+
+    .quality-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .quality-head strong {
+      display: block;
+      font-size: 34px;
+      line-height: 1;
+      letter-spacing: -1px;
+      font-weight: 800;
+    }
+
+    .quality-head span:not(.chip) {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .quality-meter {
+      width: 100%;
+      height: 10px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.075);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .quality-meter span {
+      display: block;
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+      transition: width 0.24s ease;
+    }
+
+    .quality-list,
+    .strategy-audit-list,
+    .strategy-grid,
+    .model-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .quality-item,
+    .strategy-item,
+    .strategy-card,
+    .model-card,
+    .cockpit-card,
+    .safe-note,
+    .campaign-result,
+    .copy-box {
+      border-radius: 16px;
+      border: 1px solid var(--line-soft);
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .quality-item,
+    .strategy-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 11px 12px;
+    }
+
+    .quality-item span,
+    .strategy-item span {
+      width: 22px;
+      height: 22px;
+      flex: 0 0 22px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      color: rgba(247, 244, 238, 0.72);
+      background: rgba(255, 255, 255, 0.07);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .quality-item p,
+    .strategy-item p {
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .quality-item.good,
+    .strategy-item.good {
+      border-color: rgba(126, 226, 168, 0.19);
+      background: rgba(126, 226, 168, 0.075);
+    }
+
+    .quality-item.good span,
+    .strategy-item.good span {
+      color: #07100b;
+      background: var(--green);
+    }
+
+    .quality-item.warning,
+    .strategy-item.warning {
+      border-color: rgba(215, 181, 109, 0.22);
+      background: rgba(215, 181, 109, 0.075);
+    }
+
+    .quality-item.warning span,
+    .strategy-item.warning span {
+      color: #07070a;
+      background: var(--gold-light);
+    }
+
+    .campaign-result,
+    .safe-note {
+      margin-top: 16px;
+      padding: 14px;
+      color: rgba(247, 244, 238, 0.82);
+      font-size: 13px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+
+    .safe-note {
+      margin-top: 0;
+      border-color: rgba(215, 181, 109, 0.16);
+      background: rgba(215, 181, 109, 0.075);
+    }
+
+    .strategy-card {
+      padding: 14px;
+    }
+
+    .strategy-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .strategy-card p {
+      font-size: 12px;
+    }
+
+    .posting-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.42fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .cockpit-card {
+      display: grid;
+      gap: 12px;
+      padding: 16px;
+    }
+
+    .cockpit-card-header,
+    .model-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .cockpit-card-header strong,
+    .model-card strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .cockpit-card-header p,
+    .model-card p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .cockpit-meta,
+    .mini-actions,
+    .model-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .copy-box {
+      padding: 12px;
+      color: rgba(247, 244, 238, 0.84);
+      background: rgba(7, 7, 10, 0.42);
+      font-size: 12px;
+      white-space: pre-wrap;
+    }
+
+    .model-card {
+      display: grid;
+      gap: 12px;
+      padding: 14px;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .model-card.active {
+      border-color: rgba(215, 181, 109, 0.34);
+      background: rgba(215, 181, 109, 0.075);
+    }
+
+    .model-card.locked {
+      opacity: 0.78;
+    }
+
+    .model-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 26px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      color: rgba(247, 244, 238, 0.72);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      font-size: 10.5px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .model-badge.free {
+      color: #c8f9d9;
+      background: var(--green-soft);
+      border-color: rgba(126, 226, 168, 0.20);
+    }
+
+    .model-badge.paid {
+      color: #f7d991;
+      background: rgba(215, 181, 109, 0.10);
+      border-color: rgba(215, 181, 109, 0.18);
+    }
+
+    .model-badge.locked {
+      color: #ffd0d8;
+      background: var(--red-soft);
+      border-color: rgba(251, 113, 133, 0.22);
+    }
+
     .table-wrap {
       overflow-x: auto;
       border: 1px solid var(--line-soft);
@@ -1035,7 +1287,8 @@
 
       .dashboard-grid,
       .planner-grid,
-      .two-col-grid {
+      .two-col-grid,
+      .posting-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1201,11 +1454,11 @@
 <body>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
-      <a class="brand" href="#" aria-label="Saionra Social Workspace">
+      <a class="brand" href="#" aria-label="Saionra Social Scheduler">
         <span class="brand-mark">S</span>
         <span>
           <strong>Saionra</strong>
-          <span>Social Workspace</span>
+          <span>Social Scheduler</span>
         </span>
       </a>
 
@@ -1226,7 +1479,7 @@
           <button class="nav-button" type="button" data-page="calendar">Calendar</button>
           <button class="nav-button" type="button" data-page="posting">Posting Cockpit</button>
           <button class="nav-button" type="button" data-page="reports">Reports</button>
-          <button class="nav-button" type="button" data-page="ai-settings">AI Settings</button>
+          <button class="nav-button" type="button" data-page="ai-settings">AI Engine</button>
           <button class="nav-button" type="button" data-page="settings">Brand Settings</button>
         </nav>
       </div>
@@ -1234,10 +1487,10 @@
       <div class="sidebar-section">
         <div class="sidebar-label">Coming Soon</div>
         <div class="nav-list">
-          <span class="nav-soon">Meta Auto-Posting <small>API</small></span>
+          <span class="nav-soon">Direct Publishing <small>Soon</small></span>
           <span class="nav-soon">Team Login <small>Auth</small></span>
           <span class="nav-soon">Client Portal <small>Link</small></span>
-          <span class="nav-soon">Paid AI Usage <small>Gate</small></span>
+          <span class="nav-soon">Plan Limits <small>Soon</small></span>
         </div>
       </div>
     </aside>
@@ -1484,7 +1737,7 @@
                       <strong id="qualityScore">0%</strong>
                       <span id="qualityLabel">Needs content</span>
                     </div>
-                    <span class="chip neutral" id="qualityModeChip">Template logic</span>
+                    <span class="chip neutral" id="qualityModeChip">Smart Engine</span>
                   </div>
                   <div class="quality-meter"><span id="qualityFill"></span></div>
                   <div class="quality-list" id="qualityChecklist"></div>
@@ -1496,7 +1749,7 @@
                   <div>
                     <div class="panel-eyebrow">Posting Checklist</div>
                     <h2>Manual posting mode</h2>
-                    <p>Use this before the API posting module is connected.</p>
+                    <p>Use this before direct platform publishing is connected.</p>
                   </div>
                 </div>
                 <div class="quick-list">
@@ -1607,7 +1860,7 @@
                 <div>
                   <div class="panel-eyebrow">Strategy Lab</div>
                   <h2>Campaign builder</h2>
-                  <p>Generate a balanced campaign plan using the saved brand, content pillars, platforms, and no-cost template logic.</p>
+                  <p>Generate a balanced campaign plan using the saved brand, content pillars, platforms, and Saionra Smart Engine.</p>
                 </div>
               </div>
 
@@ -1664,7 +1917,7 @@
                 <div class="full-field">
                   <div class="form-actions">
                     <div class="chip-row">
-                      <span class="chip">No paid API used</span>
+                      <span class="chip">Smart campaign logic</span>
                       <span class="chip neutral">Uses Brand Brain</span>
                     </div>
                     <div class="post-actions">
@@ -1783,7 +2036,7 @@
                 <div>
                   <div class="panel-eyebrow">Posting Cockpit</div>
                   <h2>Manual posting command center</h2>
-                  <p>Use this until auto-posting APIs are connected. It keeps the client workflow useful without paid platform API costs.</p>
+                  <p>Use this before direct platform publishing is connected. It keeps the workflow clear, simple, and client-ready.</p>
                 </div>
               </div>
               <div class="queue-list" id="postingCockpitList"></div>
@@ -1853,14 +2106,14 @@
         </section>
 
 
-        <section class="page" id="page-ai-settings" aria-label="AI Settings">
+        <section class="page" id="page-ai-settings" aria-label="AI Engine">
           <div class="two-col-grid">
             <section class="panel">
               <div class="panel-header">
                 <div>
-                  <div class="panel-eyebrow">AI Settings</div>
-                  <h2>Model selector and cost control</h2>
-                  <p>Choose the AI mode without exposing API keys in the browser. Paid AI should only activate after the client has paid.</p>
+                  <div class="panel-eyebrow">AI Engine</div>
+                  <h2>Smart content engine</h2>
+                  <p>Choose how Saionra creates captions, ideas, campaign drafts, and report summaries for this workspace.</p>
                 </div>
               </div>
 
@@ -1868,20 +2121,20 @@
                 <div class="field">
                   <label for="aiMode">AI Mode</label>
                   <select id="aiMode">
-                    <option value="template">Template AI — no API cost</option>
-                    <option value="free-router">Free Tier Router — backend needed</option>
-                    <option value="byo-key">Bring Your Own Key — client pays usage</option>
-                    <option value="managed-paid">Saionra Managed AI — locked until paid</option>
-                    <option value="off">No AI</option>
+                    <option value="template">Saionra Smart Engine</option>
+                    <option value="free-router">Saionra AI Connect</option>
+                    <option value="byo-key">Private Provider</option>
+                    <option value="managed-paid">Managed AI Engine</option>
+                    <option value="off">AI Disabled</option>
                   </select>
                 </div>
 
                 <div class="field">
-                  <label for="aiProvider">Preferred Provider</label>
+                  <label for="aiProvider">AI Provider</label>
                   <select id="aiProvider">
-                    <option value="template">Saionra Template AI</option>
-                    <option value="gemini">Gemini Free Tier</option>
-                    <option value="groq">Groq Free/Fast</option>
+                    <option value="template">Saionra Smart Engine</option>
+                    <option value="gemini">Gemini</option>
+                    <option value="groq">Groq</option>
                     <option value="openrouter">OpenRouter Multi-Model</option>
                     <option value="mistral">Mistral</option>
                     <option value="huggingface">Hugging Face</option>
@@ -1900,22 +2153,22 @@
                 </div>
 
                 <div class="field">
-                  <label for="aiMonthlyLimit">Monthly AI Credit Limit</label>
+                  <label for="aiMonthlyLimit">Monthly Generation Limit</label>
                   <input type="number" min="0" id="aiMonthlyLimit" placeholder="Example: 1000">
                 </div>
 
                 <div class="full-field">
                   <div class="safe-note">
-                    API keys should stay in a backend route or Vercel environment variable, not inside this HTML file. This screen only saves the preferred mode and provider for the workspace.
+                    Saionra can use its built-in Smart Engine now, then connect a private provider later for advanced generation. Provider access should be handled securely outside the public page.
                   </div>
                 </div>
 
                 <div class="form-actions">
                   <div class="chip-row">
-                    <span class="chip" id="aiActiveModeChip">Template AI active</span>
-                    <span class="chip neutral" id="aiCostChip">No cost mode</span>
+                    <span class="chip" id="aiActiveModeChip">Smart Engine active</span>
+                    <span class="chip neutral" id="aiCostChip">Ready</span>
                   </div>
-                  <button class="btn btn-primary" type="submit">Save AI Settings</button>
+                  <button class="btn btn-primary" type="submit">Save AI Engine</button>
                 </div>
               </form>
             </section>
@@ -1925,8 +2178,8 @@
                 <div class="panel-header">
                   <div>
                     <div class="panel-eyebrow">Models</div>
-                    <h2>Provider status</h2>
-                    <p>Clear badges help users understand what is free, locked, paid, or needs backend setup.</p>
+                    <h2>Engine options</h2>
+                    <p>Choose the engine used for captions, ideas, campaign drafts, and report summaries.</p>
                   </div>
                 </div>
                 <div class="model-grid" id="aiModelCards"></div>
@@ -2022,7 +2275,7 @@
                   <div class="quick-item"><strong>1. Add brand basics</strong><p>Name, audience, offer, and CTA make the AI output more specific.</p></div>
                   <div class="quick-item"><strong>2. Use 5–7 content pillars</strong><p>This prevents random posting and supports a stronger monthly strategy.</p></div>
                   <div class="quick-item"><strong>3. Keep approvals clean</strong><p>Use Needs Review and Approved before scheduling or posting.</p></div>
-                  <div class="quick-item"><strong>4. Track simple metrics</strong><p>Start with impressions, engagement, clicks, and leads before API analytics.</p></div>
+                  <div class="quick-item"><strong>4. Track simple metrics</strong><p>Start with impressions, engagement, clicks, and leads before direct analytics sync.</p></div>
                 </div>
               </section>
             </aside>
@@ -2064,44 +2317,44 @@
 
     const aiProviders = {
       template: {
-        name: "Saionra Template AI",
-        description: "No API calls. Uses built-in content logic, Brand Brain, pillars, and campaign templates.",
-        badges: ["No API Cost", "Active", "Safe Demo"]
+        name: "Saionra Smart Engine",
+        description: "Built-in strategy logic for captions, ideas, campaign drafts, and report summaries.",
+        badges: ["Built-in", "Ready", "Brand-Aware"]
       },
       gemini: {
-        name: "Gemini Free Tier",
-        description: "Good first free/low-cost route when connected through a secure backend.",
-        badges: ["Free Tier", "Backend Needed", "Rate Limited"]
+        name: "Gemini",
+        description: "A strong provider option for fast captions, content ideas, and campaign drafts.",
+        badges: ["Provider Option", "Fast", "Advanced"]
       },
       groq: {
-        name: "Groq Fast Free",
-        description: "Fast free-start option for simple rewrites and captions when backend routing is connected.",
-        badges: ["Free Limited", "Fast", "Backend Needed"]
+        name: "Groq",
+        description: "A fast provider option for quick rewrites, short captions, and simple content variations.",
+        badges: ["Provider Option", "Fast", "Drafting"]
       },
       openrouter: {
-        name: "OpenRouter Multi-Model",
-        description: "Can route across free and paid models later from one backend endpoint.",
-        badges: ["Free + Paid", "Router", "Backend Needed"]
+        name: "OpenRouter",
+        description: "A flexible provider route for choosing different models from one setup.",
+        badges: ["Multi-Model", "Flexible", "Advanced"]
       },
       mistral: {
         name: "Mistral",
-        description: "Open model option for captions, summaries, and rewrites when API routing is connected.",
-        badges: ["Free/Paid", "Backend Needed"]
+        description: "A strong open-model provider option for captions, summaries, and structured rewrites.",
+        badges: ["Open Model", "Advanced", "Drafting"]
       },
       huggingface: {
         name: "Hugging Face",
-        description: "Useful for testing open-source models, experiments, and fallback ideas.",
-        badges: ["Credits", "Experimental", "Backend Needed"]
+        description: "Useful for open-source experiments and custom model workflows later.",
+        badges: ["Open Source", "Experimental", "Custom"]
       },
       openai: {
         name: "OpenAI / ChatGPT Models",
-        description: "Premium quality option. Use BYO key or Saionra Managed AI only after payment.",
-        badges: ["Paid API", "BYO Key", "Client-Safe"]
+        description: "Premium provider option for high-quality copy, deeper reasoning, and polished writing.",
+        badges: ["Premium", "Private", "Advanced"]
       },
       claude: {
         name: "Claude Models",
-        description: "Premium writing and reasoning option. Use BYO key or paid Saionra plan only.",
-        badges: ["Paid API", "BYO Key", "Premium"]
+        description: "Premium provider option for longer writing, careful tone, and structured reasoning.",
+        badges: ["Premium", "Private", "Long-Form"]
       }
     };
 
@@ -2161,15 +2414,15 @@
       },
       posting: {
         title: "Posting Cockpit",
-        subtitle: "Prepare ready posts for manual publishing without API costs or messy switching."
+        subtitle: "Prepare ready posts for manual publishing without messy switching."
       },
       reports: {
         title: "Reports",
         subtitle: "Track simple post results and prepare cleaner weekly or monthly reports."
       },
       "ai-settings": {
-        title: "AI Settings",
-        subtitle: "Choose AI mode, provider, safety level, and cost control before real API integration."
+        title: "AI Engine",
+        subtitle: "Choose the content engine, provider preference, and safety level for this workspace."
       },
       settings: {
         title: "Brand Settings",
@@ -2461,13 +2714,13 @@
 
     function getAiModeLabel(mode) {
       const labels = {
-        template: "Template AI",
-        "free-router": "Free Tier Router",
-        "byo-key": "Bring Your Own Key",
-        "managed-paid": "Managed AI Locked",
-        off: "AI Off"
+        template: "Saionra Smart Engine",
+        "free-router": "Saionra AI Connect",
+        "byo-key": "Private Provider",
+        "managed-paid": "Managed AI Engine",
+        off: "AI Disabled"
       };
-      return labels[mode] || "Template AI";
+      return labels[mode] || "Saionra Smart Engine";
     }
 
     function getQualityAnalysis(input = {}) {
@@ -2788,19 +3041,21 @@
 
       const modeLabel = getAiModeLabel(state.aiSettings.mode);
       selectors.aiActiveModeChip.textContent = `${modeLabel} active`;
-      const costLabel = state.aiSettings.mode === "template" || state.aiSettings.mode === "off"
-        ? "No cost mode"
-        : state.aiSettings.mode === "managed-paid"
-          ? "Locked until paid"
-          : "Backend required";
+      const costLabel = state.aiSettings.mode === "template"
+        ? "Ready"
+        : state.aiSettings.mode === "off"
+          ? "Disabled"
+          : state.aiSettings.mode === "managed-paid"
+            ? "Plan required"
+            : "Private setup";
       selectors.aiCostChip.textContent = costLabel;
 
       selectors.aiModelCards.innerHTML = Object.entries(aiProviders).map(([key, provider]) => {
         const active = key === state.aiSettings.provider;
-        const locked = ["openai", "claude"].includes(key) || state.aiSettings.mode === "managed-paid";
+        const locked = state.aiSettings.mode === "managed-paid" && key !== "template";
         const badges = provider.badges.map((badge) => {
           const lower = badge.toLowerCase();
-          const cls = lower.includes("free") || lower.includes("active") ? "free" : lower.includes("paid") || lower.includes("client") || lower.includes("byo") ? "paid" : lower.includes("locked") || lower.includes("backend") ? "locked" : "";
+          const cls = lower.includes("built") || lower.includes("ready") || lower.includes("brand") ? "free" : lower.includes("premium") || lower.includes("private") || lower.includes("advanced") ? "paid" : lower.includes("plan") ? "locked" : "";
           return `<span class="model-badge ${cls}">${escapeHtml(badge)}</span>`;
         }).join("");
         return `
@@ -2828,7 +3083,7 @@
       saveAll();
       renderAiSettings();
       renderQualityPanel();
-      showToast("AI settings saved. No API key was stored in this HTML.");
+      showToast("AI Engine settings saved.");
     }
 
     function renderStats() {
@@ -3251,11 +3506,72 @@ ${preview}`;
       }
     }
 
-    function generateCaption() {
+    async function requestSaionraAi(payload) {
+      if (["template", "off"].includes(state.aiSettings.mode)) return "";
+
+      try {
+        const response = await fetch("/api/ai-generate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) return "";
+        const data = await response.json();
+        return String(data.text || data.content || data.result || "").trim();
+      } catch (error) {
+        return "";
+      }
+    }
+
+    function buildSmartCaption({ brand, audience, offer, cta, goal, platform, pillar, tone, angle, length }) {
+      const hooks = {
+        "Get leads": `Your audience may already be interested. The real problem is making the next step feel simple enough to take.`,
+        "Drive traffic": `A strong post does not need to say everything. It needs to give people one clear reason to click, read, or ask.`,
+        "Increase engagement": `Quick question: what part of this process feels the most time-consuming right now?`,
+        "Promote offer": `${brand} is built for people who want a clearer and easier way to move from idea to execution.`,
+        "Educate audience": `Most people do not struggle because they lack effort. They struggle because the workflow is scattered.`,
+        "Announce update": `New update from ${brand}: this is designed to make planning, approvals, and execution easier.`
+      };
+
+      const pillarAngles = {
+        "Educational": `Here is the simple point: ${angle}. When the workflow is clear, content becomes easier to plan, review, and improve.`,
+        "Proof / Case Study": `A smoother workflow usually shows up in small wins first: fewer missed posts, cleaner approvals, better tracking, and less confusion.`,
+        "Offer / CTA": `For ${audience}, the goal is not to add another tool. The goal is to make the process easier to manage from content idea to final report.`,
+        "Behind the Scenes": `Behind every consistent content system is a simple process: plan the idea, write the caption, prepare the asset, approve it, post it, and track what happened.`,
+        "FAQ": `One common question is whether content planning needs to be complicated. It does not. It only needs a clear system and a repeatable review flow.`,
+        "Authority": `A good content system should not only help you post more. It should help you make better decisions with less back-and-forth.`,
+        "Problem / Solution": `The problem is scattered work. The solution is one calm workflow where the brand, posts, approvals, schedule, and reports stay connected.`
+      };
+
+      const lengthMap = {
+        Short: `${hooks[goal] || hooks["Get leads"]}\n\n${pillarAngles[pillar] || pillarAngles["Educational"]}\n\n${cta}.`,
+        Medium: `${hooks[goal] || hooks["Get leads"]}\n\n${pillarAngles[pillar] || pillarAngles["Educational"]}\n\nFor ${audience}, this means fewer scattered notes, cleaner approvals, and a better way to understand what content is actually working.\n\n${cta}.`,
+        Detailed: `${hooks[goal] || hooks["Get leads"]}\n\n${pillarAngles[pillar] || pillarAngles["Educational"]}\n\nA better content workflow should answer these questions clearly:\n\n- What are we posting?\n- Why are we posting it?\n- Who needs to approve it?\n- When does it go live?\n- What happened after it was posted?\n\nFor ${audience}, that kind of clarity saves time and makes the content process easier to trust.\n\n${cta}.`
+      };
+
+      const platformEnding = {
+        Instagram: "Keep the first line strong, use clean spacing, and make the CTA easy to follow.",
+        Facebook: "Keep it human, helpful, and easy to reply to.",
+        LinkedIn: "Keep it practical, business-focused, and clear.",
+        TikTok: "Use this as the caption under a direct hook-style short video.",
+        "YouTube Shorts": "Keep the caption short and connected to the video hook."
+      };
+
+      const hashtags = [brand, "ContentWorkflow", "SocialMediaManagement", "BusinessAutomation"]
+        .map((tag) => `#${String(tag).replace(/[^a-zA-Z0-9]/g, "")}`)
+        .filter((tag) => tag.length > 1)
+        .slice(0, 4)
+        .join(" ");
+
+      return `${lengthMap[length] || lengthMap.Medium}\n\n${platformEnding[platform] || "Keep the message clear and focused."}\n\n${hashtags}`;
+    }
+
+    async function generateCaption() {
       const brand = state.workspace.name || "your business";
       const audience = state.workspace.audience || "your ideal clients";
       const offer = state.workspace.offer || "your offer";
-      const cta = state.workspace.cta || "message us to get started";
+      const cta = state.workspace.cta || "Message us to get started";
       const goal = selectors.aiGoal.value;
       const platform = selectors.aiPlatform.value;
       const pillar = selectors.aiPillar.value;
@@ -3264,40 +3580,32 @@ ${preview}`;
       const length = selectors.aiLength.value;
 
       if (state.aiSettings.mode === "off") {
-        showToast("AI is turned off in AI Settings.");
+        showToast("AI Engine is turned off.");
         return;
       }
 
-      const modeNote = state.aiSettings.mode === "template"
-        ? "Generated with Saionra Template AI. No paid API was used."
-        : `${getAiModeLabel(state.aiSettings.mode)} selected. Backend routing is required before real external AI runs.`;
-
-      const hooks = {
-        "Get leads": `If ${audience} are interested but not taking action yet, the next step may need to feel clearer and easier.`,
-        "Drive traffic": `${audience} do not need more noise. They need one clear reason to click and learn more.`,
-        "Increase engagement": `Quick question for ${audience}: what part of this process feels the most time-consuming right now?`,
-        "Promote offer": `${brand} is built for ${audience} who want a simpler way to move forward.`,
-        "Educate audience": `Most ${audience} do not struggle because they lack effort. They struggle because the process is not simple enough yet.`,
-        "Announce update": `New update from ${brand}: this is designed to make the next step easier for ${audience}.`
+      const payload = {
+        task: "social_caption",
+        engine: state.aiSettings.mode,
+        provider: state.aiSettings.provider,
+        safety: state.aiSettings.sensitivity,
+        brand: {
+          name: brand,
+          audience,
+          offer,
+          cta,
+          tone,
+          voice: state.workspace.voice,
+          pillars: state.workspace.pillars,
+          platforms: state.workspace.platforms
+        },
+        request: { goal, platform, pillar, tone, angle, length }
       };
 
-      const bodyByLength = {
-        Short: `${brand} helps with ${offer}, especially when the goal is to ${angle}.`,
-        Medium: `${brand} helps ${audience} simplify ${angle} without adding more confusion, manual work, or scattered tools. The goal is to make content, tasks, approvals, and reporting easier to manage.`,
-        Detailed: `${brand} helps ${audience} simplify ${angle} without adding more confusion, manual work, or scattered tools. Instead of guessing what to post, where the assets are, who approved the content, and what happened after posting, the workflow becomes easier to track from idea to report.`
-      };
+      selectors.generatedContent.textContent = "Generating caption...";
 
-      const platformNote = {
-        Instagram: "Use a strong first line, clean spacing, and a clear CTA.",
-        Facebook: "Make it helpful, human, and easy to reply to.",
-        LinkedIn: "Keep the message practical, business-focused, and clear.",
-        TikTok: "Use this caption under a direct hook-style short video.",
-        "YouTube Shorts": "Keep the caption short and connected to the video hook."
-      };
-
-      const caption = `${hooks[goal] || hooks["Get leads"]}\n\n${bodyByLength[length]}\n\nContent pillar: ${pillar}.\nTone: ${tone}.\n\nCTA: ${cta}.\n\nPosting note for ${platform}: ${platformNote[platform] || "Keep the copy clear and focused."}\n\n#Saionra #ContentWorkflow #BusinessAutomation #SocialMediaManagement
-
-AI mode note: ${modeNote}`;
+      const externalText = await requestSaionraAi(payload);
+      const caption = externalText || buildSmartCaption({ brand, audience, offer, cta, goal, platform, pillar, tone, angle, length });
 
       selectors.generatedContent.textContent = caption;
       showToast("Caption generated.");
