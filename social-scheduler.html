@@ -2309,10 +2309,10 @@
     const statuses = ["Idea", "Draft", "Needs Review", "Changes Requested", "Approved", "Scheduled", "Ready", "Posted", "Reported"];
 
     const defaultAiSettings = {
-      mode: "template",
-      provider: "template",
+      mode: "free-router",
+      provider: "gemini",
       sensitivity: "standard",
-      monthlyLimit: 0
+      monthlyLimit: 1000
     };
 
     const aiProviders = {
@@ -3513,7 +3513,11 @@ ${preview}`;
         const response = await fetch("/api/ai-generate", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
+          body: JSON.stringify({
+            ...payload,
+            workspaceId: state.workspace.name || "Saionra",
+            requestedAt: new Date().toISOString()
+          })
         });
 
         if (!response.ok) return "";
@@ -3611,12 +3615,49 @@ ${preview}`;
       showToast("Caption generated.");
     }
 
-    function generateIdeas() {
-      const brand = state.workspace.name;
-      const audience = state.workspace.audience;
-      const offer = state.workspace.offer;
+    async function generateIdeas() {
+      const brand = state.workspace.name || "Saionra";
+      const audience = state.workspace.audience || "your ideal clients";
+      const offer = state.workspace.offer || "your offer";
       const platform = selectors.aiPlatform.value;
-      const ideas = state.workspace.pillars.slice(0, 7).map((pillar, index) => {
+      const goal = selectors.aiGoal.value;
+      const pillar = selectors.aiPillar.value;
+      const tone = selectors.aiTone.value;
+      const angle = selectors.aiAngle.value.trim() || "make the content workflow easier";
+
+      if (state.aiSettings.mode === "off") {
+        showToast("AI Engine is turned off.");
+        return;
+      }
+
+      const payload = {
+        task: "social_ideas",
+        engine: state.aiSettings.mode,
+        provider: state.aiSettings.provider,
+        safety: state.aiSettings.sensitivity,
+        brand: {
+          name: brand,
+          audience,
+          offer,
+          cta: state.workspace.cta,
+          tone,
+          voice: state.workspace.voice,
+          pillars: state.workspace.pillars,
+          platforms: state.workspace.platforms
+        },
+        request: { goal, platform, pillar, tone, angle, count: 7 }
+      };
+
+      selectors.generatedContent.textContent = "Generating ideas...";
+
+      const externalText = await requestSaionraAi(payload);
+      if (externalText) {
+        selectors.generatedContent.textContent = externalText;
+        showToast("Ideas generated.");
+        return;
+      }
+
+      const ideas = state.workspace.pillars.slice(0, 7).map((item, index) => {
         const angles = {
           "Educational": "Teach one simple mistake to avoid",
           "Proof / Case Study": "Show a before-and-after workflow improvement",
@@ -3626,7 +3667,7 @@ ${preview}`;
           "Authority": "Explain the principle behind better execution",
           "Problem / Solution": "Name a pain point and show the simpler fix"
         };
-        return `${index + 1}. ${pillar}: ${angles[pillar] || `Create a helpful post about ${offer}`} for ${audience}. Platform: ${platform}.`;
+        return `${index + 1}. ${item}: ${angles[item] || `Create a helpful post about ${offer}`} for ${audience}. Platform: ${platform}.`;
       }).join("\n");
 
       selectors.generatedContent.textContent = `${brand} content ideas:\n\n${ideas}`;
